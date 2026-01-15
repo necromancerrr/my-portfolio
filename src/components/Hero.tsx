@@ -509,8 +509,8 @@ export default function Hero() {
 
 // Pixel letter component - renders each letter as a grid of blocks
 function PixelLetter({ letter, color }: { letter: string; color: string }) {
-    const size = 'clamp(8px, 1.6vw, 16px)';
-    const gap = 'clamp(2px, 0.25vw, 3px)';
+    const size = 'clamp(4px, 1.6vw, 16px)';
+    const gap = 'clamp(1px, 0.25vw, 3px)';
 
     // Define pixel patterns for each letter (5 wide x 7 tall grid)
     const patterns: Record<string, number[][]> = {

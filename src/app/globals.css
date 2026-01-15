@@ -327,23 +327,46 @@ a:hover {
 
 @media (max-width: 768px) {
   .floating-ui-element {
-    transform: scale(0.55) !important;
+    transform: scale(0.5) !important;
     transform-origin: center center;
+    animation: none !important;
   }
 
-  /* Reposition for mobile - move outside the main content area */
+  /* Position elements at screen edges, away from center/face */
   .floating-ui-element:nth-of-type(1) {
-    left: -5% !important;
-    top: 55% !important;
+    left: -25% !important;
+    top: auto !important;
+    bottom: 35% !important;
+  }
+
+  .floating-ui-element:nth-of-type(2) {
+    right: 0% !important;
+    top: 30% !important;
+  }
+
+  .floating-ui-element:nth-of-type(3) {
+    right: -10% !important;
+    bottom: 10% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-ui-element {
+    transform: scale(0.4) !important;
+  }
+
+  .floating-ui-element:nth-of-type(1) {
+    left: -35% !important;
+    bottom: 40% !important;
   }
 
   .floating-ui-element:nth-of-type(2) {
     right: -5% !important;
-    top: 0% !important;
+    top: 28% !important;
   }
 
   .floating-ui-element:nth-of-type(3) {
-    right: -5% !important;
-    bottom: 5% !important;
+    right: -20% !important;
+    bottom: 8% !important;
   }
 }
