@@ -224,23 +224,27 @@ export default function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '18px',
-                    color: 'var(--text-color)',
                     transition: 'all 0.3s ease',
                     textDecoration: 'none',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'var(--primary-color)';
-                    e.currentTarget.style.color = 'var(--primary-color)';
                     e.currentTarget.style.transform = 'scale(1.1)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = 'var(--text-color)';
-                    e.currentTarget.style.color = 'var(--text-color)';
                     e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
-                  in
+                  <img
+                    src="/icons/linkedin.png"
+                    alt="LinkedIn"
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      filter: 'var(--icon-filter, none)',
+                    }}
+                  />
                 </a>
 
                 {/* GitHub */}
@@ -258,23 +262,27 @@ export default function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '20px',
-                    color: 'var(--text-color)',
                     transition: 'all 0.3s ease',
                     textDecoration: 'none',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'var(--primary-color)';
-                    e.currentTarget.style.color = 'var(--primary-color)';
                     e.currentTarget.style.transform = 'scale(1.1)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = 'var(--text-color)';
-                    e.currentTarget.style.color = 'var(--text-color)';
                     e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
-                  ⌘
+                  <img
+                    src="/icons/github.png"
+                    alt="GitHub"
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      filter: 'var(--icon-filter, none)',
+                    }}
+                  />
                 </a>
 
                 {/* Email */}
@@ -290,23 +298,27 @@ export default function Home() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '18px',
-                    color: 'var(--text-color)',
                     transition: 'all 0.3s ease',
                     textDecoration: 'none',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'var(--primary-color)';
-                    e.currentTarget.style.color = 'var(--primary-color)';
                     e.currentTarget.style.transform = 'scale(1.1)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = 'var(--text-color)';
-                    e.currentTarget.style.color = 'var(--text-color)';
                     e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
-                  ✉
+                  <img
+                    src="/icons/email.png"
+                    alt="Email"
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      filter: 'var(--icon-filter, none)',
+                    }}
+                  />
                 </a>
               </div>
             </AnimatedSection>
