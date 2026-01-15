@@ -9,7 +9,7 @@ export default function Hero() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '100px 200px 60px',
+            padding: '100px 24px 60px',
             textAlign: 'center',
         }}>
             {/* Pixel Art Name - CodeVault Style */}
@@ -18,10 +18,11 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 style={{
-                    marginBottom: '40px',
+                    marginTop: '40px',
+                    marginBottom: '60px',
                     overflow: 'hidden',
                     width: '100%',
-                    maxWidth: '1200px',
+                    maxWidth: '1000px',
                     display: 'flex',
                     justifyContent: 'center',
                     gap: '0',
@@ -55,12 +56,12 @@ export default function Hero() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 style={{
                     width: '100%',
-                    maxWidth: '320px',
+                    maxWidth: '400px',
                     aspectRatio: '3/4',
-                    borderRadius: '20px',
+                    borderRadius: '24px',
                     overflow: 'hidden',
                     position: 'relative',
-                    marginTop: '20px',
+                    marginTop: '50px',
                 }}
             >
                 {/* Placeholder Image */}
@@ -142,7 +143,7 @@ export default function Hero() {
 
 // Pixel letter component - renders each letter as a grid of blocks
 function PixelLetter({ letter, color }: { letter: string; color: string }) {
-    const size = 'clamp(8px, 1.5vw, 14px)';
+    const size = 'clamp(8px, 1.6vw, 16px)';
     const gap = 'clamp(2px, 0.25vw, 3px)';
 
     // Define pixel patterns for each letter (5 wide x 7 tall grid)

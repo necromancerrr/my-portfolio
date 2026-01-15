@@ -55,16 +55,20 @@ export default function Navigation() {
                 gap: '8px',
             }}>
                 <Link href="/" style={{
-                    fontWeight: 700,
-                    fontSize: '16px',
                     marginRight: '16px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '4px',
-                }} className="mono">
-                    <span style={{ color: 'var(--primary-color)' }}>{'<'}</span>
-                    YE
-                    <span style={{ color: 'var(--primary-color)' }}>{'/>'}</span>
+                    gap: '2px',
+                }}>
+                    {/* Mini Pixel Logo */}
+                    <MiniPixelLetter letter="Y" color="var(--text-color)" />
+                    <MiniPixelLetter letter="i" color="var(--text-color)" />
+                    <MiniPixelLetter letter="t" color="var(--text-color)" />
+                    <MiniPixelLetter letter="b" color="var(--text-color)" />
+                    <MiniPixelLetter letter="a" color="var(--primary-color)" />
+                    <MiniPixelLetter letter="r" color="var(--primary-color)" />
+                    <MiniPixelLetter letter="e" color="var(--primary-color)" />
+                    <MiniPixelLetter letter="k" color="var(--primary-color)" />
                 </Link>
 
                 {navItems.map((item) => (
@@ -115,5 +119,109 @@ export default function Navigation() {
                 </button>
             </div>
         </nav>
+    );
+}
+
+// Mini Pixel letter component for nav logo
+function MiniPixelLetter({ letter, color }: { letter: string; color: string }) {
+    const size = '3px';
+    const gap = '1px';
+
+    const patterns: Record<string, number[][]> = {
+        'Y': [
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [0, 1, 0, 1, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+        ],
+        'i': [
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+        ],
+        't': [
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [1, 1, 1, 1, 1],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 1],
+        ],
+        'b': [
+            [1, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0],
+            [1, 1, 1, 1, 0],
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [1, 0, 0, 0, 1],
+            [1, 1, 1, 1, 0],
+        ],
+        'a': [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 0],
+            [0, 0, 0, 0, 1],
+            [0, 1, 1, 1, 1],
+            [1, 0, 0, 0, 1],
+            [0, 1, 1, 1, 1],
+        ],
+        'r': [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [1, 0, 1, 1, 0],
+            [1, 1, 0, 0, 1],
+            [1, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0],
+        ],
+        'e': [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 1, 1, 1, 0],
+            [1, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0],
+            [0, 1, 1, 1, 1],
+        ],
+        'k': [
+            [1, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0],
+            [1, 0, 0, 1, 0],
+            [1, 0, 1, 0, 0],
+            [1, 1, 0, 0, 0],
+            [1, 0, 1, 0, 0],
+            [1, 0, 0, 1, 0],
+        ],
+    };
+
+    const pattern = patterns[letter] || patterns['a'];
+
+    return (
+        <div style={{
+            display: 'grid',
+            gridTemplateRows: `repeat(7, ${size})`,
+            gridTemplateColumns: `repeat(5, ${size})`,
+            gap: gap,
+        }}>
+            {pattern.flat().map((filled, i) => (
+                <div
+                    key={i}
+                    style={{
+                        width: size,
+                        height: size,
+                        backgroundColor: filled ? color : 'transparent',
+                        borderRadius: '0.5px',
+                    }}
+                />
+            ))}
+        </div>
     );
 }

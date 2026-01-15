@@ -72,50 +72,37 @@ export default function Home() {
           {'─'.repeat(40)}
         </div>
 
-        {/* About Section */}
+        {/* About Section - Reference Style */}
         <section id="about" className="section">
-          <div className="container">
+          <div className="container" style={{ maxWidth: '800px' }}>
             <AnimatedSection>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
-                {/* Left - Glass Card with ASCII */}
-                <div className="glass-strong" style={{
-                  padding: '40px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                  <pre className="ascii-art" style={{ fontSize: '12px', opacity: 0.7 }}>
-                    {`    ╔══════════════════╗
-    ║  ┌──┐  ┌──┐     ║
-    ║  │○○│  │  │     ║
-    ║  └──┘  └──┘     ║
-    ║       ──        ║
-    ║     ╲____╱      ║
-    ╚══════════════════╝`}
-                  </pre>
-                </div>
+              {/* Bold Heading */}
+              <h2 style={{
+                fontSize: 'clamp(48px, 8vw, 72px)',
+                fontWeight: 900,
+                color: 'var(--primary-color)',
+                textAlign: 'center',
+                marginBottom: '8px',
+                lineHeight: 1,
+              }}>
+                Who am I?
+              </h2>
+            </AnimatedSection>
 
-                {/* Right - Text */}
-                <div>
-                  <h2 className="section-title">About Me</h2>
-                  <p className="section-subtitle" style={{ marginBottom: '24px' }}>
-                    I'm a Computer Science student at the University of Washington with a passion for building
-                    impactful software. From mixed reality to machine learning, I love exploring new technologies.
-                  </p>
-                  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                    {[
-                      { label: 'UW', sub: 'CS Major' },
-                      { label: '3.3', sub: 'GPA' },
-                      { label: '2027', sub: 'Graduation' },
-                    ].map((item) => (
-                      <div key={item.label} className="glass" style={{ padding: '16px 24px', flex: 1, minWidth: '100px' }}>
-                        <div className="mono" style={{ color: 'var(--primary-color)', fontWeight: 700, fontSize: '20px' }}>{item.label}</div>
-                        <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{item.sub}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            {/* Bio Paragraph */}
+            <AnimatedSection delay={0.1}>
+              <p style={{
+                fontSize: '18px',
+                lineHeight: 1.9,
+                color: 'var(--text-muted)',
+                textAlign: 'left',
+              }}>
+                I'm a Computer Science student at the University of Washington who loves building
+                things for the web. I learn best by doing, writing code from scratch and turning
+                ideas into simple, usable experiences. Whether it's creating full-stack applications,
+                experimenting with machine learning, tinkering with robotics, or designing intuitive
+                user interfaces, I'm passionate about crafting software that makes a real impact.
+              </p>
             </AnimatedSection>
           </div>
         </section>
@@ -204,43 +191,136 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="section" style={{ textAlign: 'center' }}>
+        {/* Contact Section - Clean */}
+        <section id="contact" style={{
+          textAlign: 'center',
+          padding: '100px 24px 60px',
+          position: 'relative',
+        }}>
           <div className="container">
             <AnimatedSection>
-              <div className="glass-strong" style={{ padding: '60px 40px', maxWidth: '600px', margin: '0 auto' }}>
-                <h2 className="section-title">Let's Connect</h2>
-                <p className="section-subtitle" style={{ margin: '0 auto 32px' }}>
-                  I'm always open to discussing new projects and opportunities.
-                </p>
-                <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <a href="mailto:yejigu@uw.edu" className="btn btn-primary">
-                    yejigu@uw.edu
-                  </a>
-                  <a href="https://linkedin.com/in/yithareek" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                    LinkedIn
-                  </a>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                    GitHub
-                  </a>
-                </div>
+              {/* Simple Title */}
+              <h2 className="section-title" style={{
+                fontSize: '1.5rem',
+                marginBottom: '32px',
+              }}>
+                Let's Connect
+              </h2>
+
+              {/* Circular Icon Buttons */}
+              <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '60px' }}>
+                {/* LinkedIn */}
+                <a
+                  href="https://www.linkedin.com/in/yitbareek/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    border: '2px solid var(--text-color)',
+                    background: 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    color: 'var(--text-color)',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--primary-color)';
+                    e.currentTarget.style.color = 'var(--primary-color)';
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--text-color)';
+                    e.currentTarget.style.color = 'var(--text-color)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                >
+                  in
+                </a>
+
+                {/* GitHub */}
+                <a
+                  href="https://github.com/necromancerrr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub"
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    border: '2px solid var(--text-color)',
+                    background: 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '20px',
+                    color: 'var(--text-color)',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--primary-color)';
+                    e.currentTarget.style.color = 'var(--primary-color)';
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--text-color)';
+                    e.currentTarget.style.color = 'var(--text-color)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                >
+                  ⌘
+                </a>
+
+                {/* Email */}
+                <a
+                  href="mailto:yejigu@uw.edu"
+                  title="Email"
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    border: '2px solid var(--text-color)',
+                    background: 'transparent',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    color: 'var(--text-color)',
+                    transition: 'all 0.3s ease',
+                    textDecoration: 'none',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--primary-color)';
+                    e.currentTarget.style.color = 'var(--primary-color)';
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--text-color)';
+                    e.currentTarget.style.color = 'var(--text-color)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                >
+                  ✉
+                </a>
               </div>
             </AnimatedSection>
           </div>
-        </section>
 
-        {/* Footer */}
-        <footer style={{
-          padding: '32px',
-          textAlign: 'center',
-          fontSize: '12px',
-          color: 'var(--text-muted)',
-        }}>
-          <pre className="ascii-art" style={{ fontSize: '10px', marginBottom: '16px', opacity: 0.2 }}>
-            {'[ :: ] ────────────── [ :: ]'}
-          </pre>
-          <p>© 2026 Yitbarek Ejigu. Built with Next.js & Framer Motion ✨</p>
-        </footer>
+          {/* Footer integrated */}
+          <div style={{
+            marginTop: '40px',
+            fontSize: '12px',
+            color: 'var(--text-muted)',
+          }} className="mono">
+            Design & Built by Yitbarek Ejigu © 2026
+          </div>
+        </section>
       </main>
     </>
   );
