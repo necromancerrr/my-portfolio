@@ -29,7 +29,7 @@ export default function Hero() {
                 }}
             >
                 {/* Each letter rendered as pixel blocks */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(4px, 1.5vw, 24px)', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(4px, 1.5vw, 24px)', flexWrap: 'nowrap', justifyContent: 'center' }}>
                     {/* Y - Black */}
                     <PixelLetter letter="Y" color="var(--text-color)" />
                     {/* i - Black */}
@@ -111,9 +111,35 @@ export default function Hero() {
 
                 {/* Floating Code Editor - Left Side */}
                 <motion.div
-                    initial={{ opacity: 0, x: -50, y: 20 }}
-                    animate={{ opacity: 1, x: 0, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="floating-ui-element"
+                    initial={{ opacity: 0, x: -80, y: 40 }}
+                    animate={{
+                        opacity: 1,
+                        x: 0,
+                        y: [0, -12, 0],
+                        rotate: [-3, -1, -3],
+                    }}
+                    transition={{
+                        opacity: { duration: 0.8, delay: 0.5 },
+                        x: { duration: 0.8, delay: 0.5 },
+                        y: {
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.5
+                        },
+                        rotate: {
+                            duration: 6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.5
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.05,
+                        rotate: 0,
+                        transition: { duration: 0.3 }
+                    }}
                     style={{
                         position: 'absolute',
                         left: '-15%',
@@ -127,7 +153,7 @@ export default function Hero() {
                         border: '1px solid var(--glass-border)',
                         zIndex: 10,
                         minWidth: '280px',
-                        transform: 'rotate(-3deg)',
+                        cursor: 'pointer',
                     }}
                 >
                     {/* Window Header */}
@@ -175,9 +201,42 @@ export default function Hero() {
 
                 {/* Floating Toolbar - Top Right */}
                 <motion.div
-                    initial={{ opacity: 0, x: 50, y: -20 }}
-                    animate={{ opacity: 1, x: 0, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="floating-ui-element"
+                    initial={{ opacity: 0, x: 80, y: -40 }}
+                    animate={{
+                        opacity: 1,
+                        x: 0,
+                        y: [0, -8, 0],
+                        rotate: [2, 4, 2],
+                        scale: [1, 1.02, 1],
+                    }}
+                    transition={{
+                        opacity: { duration: 0.8, delay: 0.6 },
+                        x: { duration: 0.8, delay: 0.6 },
+                        y: {
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.8
+                        },
+                        rotate: {
+                            duration: 5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.8
+                        },
+                        scale: {
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 0.8
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.1,
+                        rotate: 0,
+                        transition: { duration: 0.3 }
+                    }}
                     style={{
                         position: 'absolute',
                         right: '-5%',
@@ -193,7 +252,7 @@ export default function Hero() {
                         display: 'flex',
                         gap: '8px',
                         alignItems: 'center',
-                        transform: 'rotate(2deg)',
+                        cursor: 'pointer',
                     }}
                 >
                     <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--primary-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '12px' }}>▶</div>
@@ -205,9 +264,35 @@ export default function Hero() {
 
                 {/* Floating Robotic Arm Panel - Bottom Right */}
                 <motion.div
-                    initial={{ opacity: 0, x: 50, y: 20 }}
-                    animate={{ opacity: 1, x: 0, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
+                    className="floating-ui-element"
+                    initial={{ opacity: 0, x: 80, y: 40 }}
+                    animate={{
+                        opacity: 1,
+                        x: 0,
+                        y: [0, -15, 0],
+                        rotate: [2, -1, 2],
+                    }}
+                    transition={{
+                        opacity: { duration: 0.8, delay: 0.7 },
+                        x: { duration: 0.8, delay: 0.7 },
+                        y: {
+                            duration: 6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1
+                        },
+                        rotate: {
+                            duration: 7,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.08,
+                        rotate: 0,
+                        transition: { duration: 0.3 }
+                    }}
                     style={{
                         position: 'absolute',
                         right: '-8%',
@@ -220,7 +305,7 @@ export default function Hero() {
                         boxShadow: 'var(--glass-shadow), var(--glass-inner-border)',
                         border: '1px solid var(--glass-border)',
                         zIndex: 10,
-                        transform: 'rotate(2deg)',
+                        cursor: 'pointer',
                     }}
                 >
                     {/* Header */}

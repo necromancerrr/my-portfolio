@@ -318,3 +318,32 @@ a:hover {
     opacity: 0.5;
   }
 }
+
+/* Floating UI Elements - Scale down on mobile */
+.floating-ui-element {
+  display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .floating-ui-element {
+    transform: scale(0.55) !important;
+    transform-origin: center center;
+  }
+
+  /* Reposition for mobile - move outside the main content area */
+  .floating-ui-element:nth-of-type(1) {
+    left: -5% !important;
+    top: 55% !important;
+  }
+
+  .floating-ui-element:nth-of-type(2) {
+    right: -5% !important;
+    top: 0% !important;
+  }
+
+  .floating-ui-element:nth-of-type(3) {
+    right: -5% !important;
+    bottom: 5% !important;
+  }
+}
