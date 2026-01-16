@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import GradientBlobs from './GradientBlobs';
 
 export default function Hero() {
     return (
@@ -11,7 +12,9 @@ export default function Hero() {
             alignItems: 'center',
             padding: '100px 24px 60px',
             textAlign: 'center',
+            position: 'relative',
         }}>
+            <GradientBlobs variant="hero" />
             {/* Pixel Art Name - CodeVault Style */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -446,7 +449,7 @@ export default function Hero() {
                     }}
                     style={{
                         width: '100%',
-                        maxWidth: '450px',
+                        maxWidth: '540px',
                         borderRadius: '24px',
                         overflow: 'visible',
                         position: 'relative',

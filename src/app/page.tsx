@@ -3,7 +3,10 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
+import ExperienceCard from '@/components/ExperienceCard';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
+import GradientBlobs from '@/components/GradientBlobs';
+import { motion } from 'framer-motion';
 
 const projects = [
   {
@@ -29,17 +32,53 @@ const projects = [
     description: 'Web app that checks Java code against UW CSF style guidelines with live editor and inline feedback system.',
     tags: ['Java', 'Web', 'Education'],
     date: 'May 2025',
+    link: 'https://lovable.dev/projects/3ba2c2d6-58f6-43fb-b4c9-8569d9263209',
   },
 ];
 
+const skillIcons: Record<string, string> = {
+  // Languages - your uploaded icons
+  'Java': '/icons/java.png',
+  'Python': '/icons/python.png',
+  'C/C++': '/icons/c.png',
+  'TypeScript': '/icons/typescript.png',
+  'JavaScript': '/icons/javascript.png',
+  'Swift': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+  // Frontend
+  'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+  'HTML/CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  'React Native': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  // Backend
+  'Firebase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+  'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  'Redis': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg',
+  // Tools
+  'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+  'VS Code': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
+  'Figma': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+  'Xcode': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg',
+  'Jupyter': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',
+};
+
 const skills = [
-  { category: 'Languages', items: ['Java', 'Python', 'C/C++', 'TypeScript', 'JavaScript', 'Swift'] },
-  { category: 'Frontend', items: ['React', 'Next.js', 'HTML/CSS', 'React Native'] },
-  { category: 'Backend', items: ['Firebase', 'Node.js', 'MySQL', 'Redis'] },
-  { category: 'Tools', items: ['Git', 'VS Code', 'Figma', 'Xcode', 'Jupyter'] },
+  { category: 'Languages', icon: '{ }', items: ['Java', 'Python', 'C/C++', 'TypeScript', 'JavaScript', 'Swift'] },
+  { category: 'Frontend', icon: '◈', items: ['React', 'Next.js', 'HTML/CSS', 'React Native'] },
+  { category: 'Backend', icon: '⬡', items: ['Firebase', 'Node.js', 'MySQL', 'Redis'] },
+  { category: 'Tools', icon: '⚙', items: ['Git', 'VS Code', 'Figma', 'Xcode', 'Jupyter'] },
 ];
 
 const experiences = [
+  {
+    role: 'Event Coordinator',
+    company: 'Google Development Club, University of Washington',
+    date: 'Jan 2025 - Present',
+    points: [
+      'Coordinated 4+ events with BITS, IUGA, and ColorStack, reaching 100+ students',
+      'Boosted attendance by 40% through targeted outreach and themed programming',
+    ],
+  },
   {
     role: 'Python & Mixed Reality Instructor',
     company: 'AVELA',
@@ -97,40 +136,107 @@ export default function Home() {
                 color: 'var(--text-muted)',
                 textAlign: 'left',
               }}>
-                I'm a Computer Science student at the University of Washington who loves building
-                things for the web. I learn best by doing, writing code from scratch and turning
-                ideas into simple, usable experiences. Whether it's creating full-stack applications,
-                experimenting with machine learning, tinkering with robotics, or designing intuitive
-                user interfaces, I'm passionate about crafting software that makes a real impact.
+                I'm a Computer Science student at the University of Washington who builds practical,
+                user-focused software. I enjoy working across the stack, from frontend interfaces to
+                backend systems, and I learn best by building real products rather than demos. My focus
+                is on turning ideas into clean, usable experiences. I care about writing thoughtful code
+                and designing software that people actually want to use.
               </p>
             </AnimatedSection>
           </div>
         </section>
 
         {/* Skills Section */}
-        <section className="section">
-          <div className="container">
+        <section id="skills" className="section" style={{ position: 'relative' }}>
+          <GradientBlobs variant="skills" />
+          <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '900px' }}>
             <AnimatedSection>
               <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '48px' }}>
                 Technical Skills
               </h2>
             </AnimatedSection>
-            <StaggerContainer className="grid grid-2" style={{ maxWidth: '800px', margin: '0 auto' }}>
-              {skills.map((skill) => (
-                <StaggerItem key={skill.category}>
-                  <div className="card">
-                    <h3 style={{ fontSize: '14px', color: 'var(--primary-color)', marginBottom: '16px' }} className="mono">
+
+            {/* Simple flowing layout */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '32px',
+            }}>
+              {skills.map((skill, catIndex) => (
+                <AnimatedSection key={skill.category} delay={catIndex * 0.1}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '16px',
+                    flexWrap: 'wrap',
+                  }}>
+                    {/* Category label */}
+                    <span style={{
+                      fontSize: '13px',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      color: 'var(--primary-color)',
+                      minWidth: '100px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                    }}>
+                      <span style={{ opacity: 0.7 }}>{skill.icon}</span>
                       {skill.category}
-                    </h3>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                      {skill.items.map((item) => (
-                        <span key={item} className="tag">{item}</span>
+                    </span>
+
+                    {/* Skill tags */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                      {skill.items.map((item, i) => (
+                        <motion.span
+                          key={item}
+                          className="tag"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            opacity: { duration: 0.4, delay: i * 0.05 },
+                          }}
+                          whileHover={{
+                            scale: 1.05,
+                            y: -2,
+                            backgroundColor: 'var(--primary-color)',
+                            color: 'white',
+                          }}
+                          style={{
+                            background: 'var(--glass-bg)',
+                            backdropFilter: 'blur(10px)',
+                            border: '1px solid var(--glass-border)',
+                            padding: '8px 16px',
+                            borderRadius: '20px',
+                            fontSize: '13px',
+                            cursor: 'default',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            color: 'var(--text-color)',
+                          }}
+                        >
+                          {skillIcons[item] && (
+                            <img
+                              src={skillIcons[item]}
+                              alt={item}
+                              style={{
+                                width: '18px',
+                                height: '18px',
+                                objectFit: 'contain',
+                                // Invert Next.js icon for dark mode
+                                filter: item === 'Next.js' ? 'var(--icon-invert, none)' : 'none',
+                              }}
+                            />
+                          )}
+                          {item}
+                        </motion.span>
                       ))}
                     </div>
                   </div>
-                </StaggerItem>
+                </AnimatedSection>
               ))}
-            </StaggerContainer>
+            </div>
           </div>
         </section>
 
@@ -140,15 +246,16 @@ export default function Home() {
         </div>
 
         {/* Projects Section */}
-        <section id="projects" className="section">
-          <div className="container">
+        <section id="projects" className="section" style={{ position: 'relative' }}>
+          <GradientBlobs variant="projects" />
+          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <AnimatedSection>
               <h2 className="section-title" style={{ marginBottom: '48px' }}>Featured Projects</h2>
             </AnimatedSection>
             <StaggerContainer className="grid grid-2">
-              {projects.map((project) => (
+              {projects.map((project, index) => (
                 <StaggerItem key={project.title}>
-                  <ProjectCard {...project} />
+                  <ProjectCard {...project} index={index} />
                 </StaggerItem>
               ))}
             </StaggerContainer>
@@ -156,36 +263,20 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="section">
-          <div className="container">
+        <section id="experience" className="section" style={{ position: 'relative' }}>
+          <GradientBlobs variant="experience" />
+          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <AnimatedSection>
-              <h2 className="section-title" style={{ marginBottom: '48px' }}>Experience</h2>
+              <h2 className="section-title" style={{ marginBottom: '48px', textAlign: 'center' }}>Experience</h2>
             </AnimatedSection>
-            <div style={{ maxWidth: '700px' }}>
+            <div style={{ maxWidth: '750px', margin: '0 auto' }}>
               {experiences.map((exp, index) => (
-                <AnimatedSection key={exp.role} delay={index * 0.1}>
-                  <div className="glass" style={{
-                    padding: '24px',
-                    marginBottom: index < experiences.length - 1 ? '24px' : '0',
-                    position: 'relative',
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', marginBottom: '8px' }}>
-                      <h3 style={{ fontSize: '18px', fontWeight: 600 }}>{exp.role}</h3>
-                      <span className="tag">{exp.date}</span>
-                    </div>
-                    <p style={{ color: 'var(--primary-color)', fontSize: '14px', marginBottom: '12px' }} className="mono">
-                      @ {exp.company}
-                    </p>
-                    <ul style={{ listStyle: 'none', fontSize: '14px', color: 'var(--text-muted)' }}>
-                      {exp.points.map((point) => (
-                        <li key={point} style={{ marginBottom: '6px', paddingLeft: '16px', position: 'relative' }}>
-                          <span style={{ position: 'absolute', left: 0, color: 'var(--primary-color)' }}>→</span>
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </AnimatedSection>
+                <ExperienceCard
+                  key={exp.role}
+                  {...exp}
+                  index={index}
+                  isLast={index === experiences.length - 1}
+                />
               ))}
             </div>
           </div>
@@ -195,7 +286,6 @@ export default function Home() {
         <section id="contact" style={{
           textAlign: 'center',
           padding: '100px 24px 60px',
-          position: 'relative',
         }}>
           <div className="container">
             <AnimatedSection>

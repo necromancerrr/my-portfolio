@@ -17,6 +17,7 @@
   --glass-inner-border: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   --ascii-color: #1a1a1a;
   --grid-color: rgba(0, 0, 0, 0.10);
+  --icon-invert: none;
 }
 
 [data-theme='dark'] {
@@ -37,6 +38,7 @@
   --ascii-color: #f0f0f0;
   --grid-color: rgba(255, 255, 255, 0.03);
   --icon-filter: invert(1);
+  --icon-invert: invert(1);
 }
 
 * {
@@ -368,5 +370,16 @@ a:hover {
   .floating-ui-element:nth-of-type(3) {
     right: -20% !important;
     bottom: 8% !important;
+  }
+}
+
+/* Floating Project Cards */
+.floating-project-card {
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .floating-project-card {
+    animation: none !important;
   }
 }
