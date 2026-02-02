@@ -71,6 +71,15 @@ const skills = [
 
 const experiences = [
   {
+    role: 'Software Developer (Dev Team)',
+    company: 'UW Blockchain Society',
+    date: 'Dec 2025 - Present',
+    points: [
+      'Developed and shipped production web features for the UW Blockchain Society website using React and TypeScript',
+      'Built reusable frontend components for a student career portal within a cross-functional engineering team',
+    ],
+  },
+  {
     role: 'Event Coordinator',
     company: 'Google Development Club, University of Washington',
     date: 'Jan 2025 - Present',
