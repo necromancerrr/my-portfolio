@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import GradientBlobs from './GradientBlobs';
 import PixelLetter from './PixelLetter';
 
@@ -63,21 +62,6 @@ export default function Hero() {
             >
                 CS @ University of Washington &apos;27
             </motion.p>
-
-            {/* Call-to-action buttons */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.85 }}
-                style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}
-            >
-                <a href="#projects" className="btn btn-primary">
-                    View Projects
-                </a>
-                <Link href="/resume" className="btn btn-outline">
-                    Resume
-                </Link>
-            </motion.div>
 
             {/* Hero Image with Floating Glass Elements */}
             <div style={{
@@ -273,6 +257,91 @@ export default function Hero() {
                     <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>⊕</div>
                     <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>⋯</div>
                     <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>+</div>
+                </motion.div>
+
+                {/* Floating Terminal - Bottom Right */}
+                <motion.div
+                    className="floating-ui-element"
+                    initial={{ opacity: 0, x: 80, y: 40 }}
+                    animate={{
+                        opacity: 1,
+                        x: 0,
+                        rotate: 2,
+                        y: [0, -6, 0],
+                    }}
+                    transition={{
+                        opacity: { duration: 0.8, delay: 0.7 },
+                        x: { duration: 0.8, delay: 0.7 },
+                        rotate: { duration: 0.8, delay: 0.7 },
+                        y: {
+                            duration: 9,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1.6
+                        }
+                    }}
+                    whileHover={{
+                        scale: 1.05,
+                        rotate: 0,
+                        transition: { duration: 0.3 }
+                    }}
+                    style={{
+                        position: 'absolute',
+                        right: '-8%',
+                        bottom: '20%',
+                        background: 'var(--card-bg)',
+                        backdropFilter: 'blur(24px) saturate(180%)',
+                        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                        borderRadius: '16px',
+                        padding: '14px 18px',
+                        boxShadow: 'var(--glass-shadow), var(--glass-inner-border)',
+                        border: '1px solid var(--glass-border)',
+                        zIndex: 10,
+                        minWidth: '230px',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                    }}
+                >
+                    {/* Terminal header */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px' }}>
+                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f57' }} />
+                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#febc2e' }} />
+                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28c840' }} />
+                        <span style={{ marginLeft: '8px', fontSize: '10px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono), monospace' }}>yit@uw: ~</span>
+                    </div>
+                    {/* Terminal lines type in one after another */}
+                    <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: '11px', lineHeight: 1.9 }}>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.2, delay: 1.6 }}
+                        >
+                            <span style={{ color: '#22c55e' }}>$</span> <span style={{ color: 'var(--text-color)' }}>whoami</span>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.2, delay: 2.3 }}
+                            style={{ color: 'var(--text-muted)' }}
+                        >
+                            cs student · builder
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.2, delay: 3.0 }}
+                        >
+                            <span style={{ color: '#22c55e' }}>$</span> <span style={{ color: 'var(--text-color)' }}>npm run loopin</span>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.2, delay: 3.7 }}
+                        >
+                            <span style={{ color: 'var(--primary-color)' }}>▸ shipping...</span>
+                            <span className="terminal-cursor" style={{ color: 'var(--text-color)' }}>▊</span>
+                        </motion.div>
+                    </div>
                 </motion.div>
 
                 {/* Main Hero Image with Floating Animation */}

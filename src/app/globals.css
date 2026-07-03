@@ -316,6 +316,23 @@ a:hover {
   color: var(--primary-color);
 }
 
+/* Blinking terminal cursor */
+.terminal-cursor {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-cursor {
+    animation: none;
+  }
+}
+
 /* Keyframes */
 @keyframes float {
 
