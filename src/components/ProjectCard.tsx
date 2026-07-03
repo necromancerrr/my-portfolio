@@ -8,10 +8,11 @@ interface ProjectCardProps {
     tags: string[];
     link?: string;
     date: string;
+    status?: string;
     index?: number;
 }
 
-export default function ProjectCard({ title, description, tags, link, date, index = 0 }: ProjectCardProps) {
+export default function ProjectCard({ title, description, tags, link, date, status, index = 0 }: ProjectCardProps) {
     // Different animation parameters for each card
     const floatDuration = 4 + (index * 0.5);
     const rotateDuration = 5 + (index * 0.7);
@@ -92,7 +93,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                     marginLeft: '12px',
                     fontSize: '12px',
                     color: 'var(--text-muted)',
-                    fontFamily: 'JetBrains Mono, monospace',
+                    fontFamily: 'var(--font-mono), monospace',
                 }}>
                     {fileName}.tsx
                 </span>
@@ -100,7 +101,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                     marginLeft: 'auto',
                     fontSize: '10px',
                     color: 'var(--primary-color)',
-                    fontFamily: 'JetBrains Mono, monospace',
+                    fontFamily: 'var(--font-mono), monospace',
                 }}>
                     ● saved
                 </span>
@@ -110,7 +111,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
             <div style={{
                 flex: 1,
                 padding: '16px 20px',
-                fontFamily: 'JetBrains Mono, monospace',
+                fontFamily: 'var(--font-mono), monospace',
                 fontSize: '12px',
                 lineHeight: 1.8,
                 overflow: 'hidden',
@@ -138,14 +139,14 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                             <span style={{ color: '#60a5fa' }}>Project</span>
                             <span style={{ color: 'var(--text-color)' }}>{' }'} </span>
                             <span style={{ color: '#e879f9' }}>from</span>
-                            <span style={{ color: '#22c55e' }}> 'portfolio'</span>
+                            <span style={{ color: '#22c55e' }}> {"'portfolio'"}</span>
                         </div>
 
                         {/* Empty line */}
                         <div>&nbsp;</div>
 
                         {/* Comment - Description */}
-                        <div style={{ color: '#6b7280' }}>/**</div>
+                        <div style={{ color: '#6b7280' }}>{'/**'}</div>
                         <div style={{ color: '#6b7280' }}> * {description}</div>
                         <div style={{ color: '#6b7280' }}> */</div>
 
@@ -163,7 +164,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                         <div style={{ paddingLeft: '16px' }}>
                             <span style={{ color: '#60a5fa' }}>name</span>
                             <span style={{ color: 'var(--text-color)' }}>: </span>
-                            <span style={{ color: '#22c55e' }}>"{title}"</span>
+                            <span style={{ color: '#22c55e' }}>{`"${title}"`}</span>
                             <span style={{ color: 'var(--text-color)' }}>,</span>
                         </div>
 
@@ -171,7 +172,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                         <div style={{ paddingLeft: '16px' }}>
                             <span style={{ color: '#60a5fa' }}>date</span>
                             <span style={{ color: 'var(--text-color)' }}>: </span>
-                            <span style={{ color: '#22c55e' }}>"{date}"</span>
+                            <span style={{ color: '#22c55e' }}>{`"${date}"`}</span>
                             <span style={{ color: 'var(--text-color)' }}>,</span>
                         </div>
 
@@ -181,7 +182,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                             <span style={{ color: 'var(--text-color)' }}>: [</span>
                             {tags.map((tag, i) => (
                                 <span key={tag}>
-                                    <span style={{ color: '#22c55e' }}>"{tag}"</span>
+                                    <span style={{ color: '#22c55e' }}>{`"${tag}"`}</span>
                                     {i < tags.length - 1 && <span style={{ color: 'var(--text-color)' }}>, </span>}
                                 </span>
                             ))}
@@ -192,7 +193,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                         <div style={{ paddingLeft: '16px' }}>
                             <span style={{ color: '#60a5fa' }}>status</span>
                             <span style={{ color: 'var(--text-color)' }}>: </span>
-                            <span style={{ color: '#a78bfa' }}>DEPLOYED</span>
+                            <span style={{ color: '#a78bfa' }}>{status || (link ? 'DEPLOYED' : 'IN_PROGRESS')}</span>
                             <span style={{ color: 'var(--text-color)' }}>,</span>
                         </div>
 
@@ -213,7 +214,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                 borderTop: '1px solid var(--glass-border)',
                 background: 'var(--glass-bg)',
                 fontSize: '10px',
-                fontFamily: 'JetBrains Mono, monospace',
+                fontFamily: 'var(--font-mono), monospace',
                 color: 'var(--text-muted)',
             }}>
                 <span style={{ color: '#22c55e' }}>● TypeScript</span>

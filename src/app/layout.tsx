@@ -1,9 +1,58 @@
 import type { Metadata } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import Providers from '@/components/Providers';
 import './globals.css';
 
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
+const siteUrl = 'https://my-portfolio-eta-mocha-48.vercel.app';
+const title = 'Yitbarek Ejigu | Software Engineer';
+const description =
+  'Portfolio of Yitbarek Ejigu — Computer Science student at the University of Washington, full-stack developer, founder of LoopIn, and incoming Software Engineering Sprintern at Google.';
+
 export const metadata: Metadata = {
-  title: 'Yitbarek Ejigu | Software Engineer',
-  description: 'Portfolio of Yitbarek Ejigu - Software Engineer & Full Stack Developer',
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords: [
+    'Yitbarek Ejigu',
+    'Software Engineer',
+    'Full Stack Developer',
+    'University of Washington',
+    'Computer Science',
+    'Portfolio',
+  ],
+  authors: [{ name: 'Yitbarek Ejigu', url: siteUrl }],
+  creator: 'Yitbarek Ejigu',
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: 'Yitbarek Ejigu',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title,
+    description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -13,7 +62,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -31,7 +80,7 @@ export default function RootLayout({
             `,
           }}
         />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

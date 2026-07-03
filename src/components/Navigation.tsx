@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import PixelLetter from './PixelLetter';
 
+// Paths are absolute so anchors work from any page (e.g. /resume)
 const navItems = [
-    { name: 'About', path: '#about' },
-    { name: 'Projects', path: '#projects' },
-    { name: 'Experience', path: '#experience' },
+    { name: 'About', path: '/#about' },
+    { name: 'Projects', path: '/#projects' },
+    { name: 'Experience', path: '/#experience' },
     { name: 'Resume', path: '/resume' },
-    { name: 'Contact', path: '#contact' },
+    { name: 'Contact', path: '/#contact' },
 ];
 
 export default function Navigation() {
@@ -76,16 +78,16 @@ export default function Navigation() {
                     alignItems: 'center',
                     gap: '8px',
                 }}>
-                    <Link href="/" style={{
+                    <Link href="/" aria-label="Home" style={{
                         marginRight: isMobile ? '8px' : '16px',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '2px',
                     }}>
                         {/* Mini Pixel Logo - just "Yit" */}
-                        <MiniPixelLetter letter="Y" color="var(--text-color)" />
-                        <MiniPixelLetter letter="i" color="var(--text-color)" />
-                        <MiniPixelLetter letter="t" color="var(--primary-color)" />
+                        <PixelLetter letter="Y" color="var(--text-color)" size="3px" gap="1px" />
+                        <PixelLetter letter="i" color="var(--text-color)" size="3px" gap="1px" />
+                        <PixelLetter letter="t" color="var(--primary-color)" size="3px" gap="1px" />
                     </Link>
 
                     {/* Desktop nav items */}
@@ -115,6 +117,7 @@ export default function Navigation() {
 
                     <button
                         onClick={toggleTheme}
+                        aria-label="Toggle light/dark theme"
                         style={{
                             marginLeft: isMobile ? '4px' : '8px',
                             padding: '8px 12px',
@@ -140,6 +143,8 @@ export default function Navigation() {
                     {isMobile && (
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                            aria-expanded={mobileMenuOpen}
                             style={{
                                 marginLeft: '4px',
                                 padding: '8px 10px',
@@ -238,109 +243,5 @@ export default function Navigation() {
                 </div>
             )}
         </>
-    );
-}
-
-// Mini Pixel letter component for nav logo
-function MiniPixelLetter({ letter, color }: { letter: string; color: string }) {
-    const size = '3px';
-    const gap = '1px';
-
-    const patterns: Record<string, number[][]> = {
-        'Y': [
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [0, 1, 0, 1, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-        ],
-        'i': [
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-        ],
-        't': [
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [1, 1, 1, 1, 1],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 1],
-        ],
-        'b': [
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 1, 1, 1, 0],
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 0],
-        ],
-        'a': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 0],
-            [0, 0, 0, 0, 1],
-            [0, 1, 1, 1, 1],
-            [1, 0, 0, 0, 1],
-            [0, 1, 1, 1, 1],
-        ],
-        'r': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [1, 0, 1, 1, 0],
-            [1, 1, 0, 0, 1],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-        ],
-        'e': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 0],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0],
-            [0, 1, 1, 1, 1],
-        ],
-        'k': [
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 1, 0],
-            [1, 0, 1, 0, 0],
-            [1, 1, 0, 0, 0],
-            [1, 0, 1, 0, 0],
-            [1, 0, 0, 1, 0],
-        ],
-    };
-
-    const pattern = patterns[letter] || patterns['a'];
-
-    return (
-        <div style={{
-            display: 'grid',
-            gridTemplateRows: `repeat(7, ${size})`,
-            gridTemplateColumns: `repeat(5, ${size})`,
-            gap: gap,
-        }}>
-            {pattern.flat().map((filled, i) => (
-                <div
-                    key={i}
-                    style={{
-                        width: size,
-                        height: size,
-                        backgroundColor: filled ? color : 'transparent',
-                        borderRadius: '0.5px',
-                    }}
-                />
-            ))}
-        </div>
     );
 }

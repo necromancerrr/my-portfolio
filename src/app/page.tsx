@@ -11,21 +11,24 @@ import { motion } from 'framer-motion';
 const projects = [
   {
     title: 'LoopIn - University App',
-    description: 'Cross-platform MVP for students to create/join study sessions, attend events, and buy/exchange items through a student marketplace.',
+    description: 'Founder & developer. Cross-platform university app MVP with study sessions, campus events, Firebase auth/CRUD, and early AI-assisted scheduling features.',
     tags: ['React Native', 'Firebase', 'TypeScript'],
     date: 'Jun 2025 - Present',
+    status: 'IN_PROGRESS',
   },
   {
     title: 'Premier League Match Predictor',
-    description: 'ML model achieving ~68% accuracy on match outcomes. Processed 1,100+ matches with Logistic Regression and Random Forest classifiers.',
+    description: 'ML model achieving ~68% accuracy across 3+ seasons, a 12% improvement over baseline. Engineered features from 1,100+ matches with Logistic Regression and Random Forest classifiers.',
     tags: ['Python', 'scikit-learn', 'ML'],
     date: 'Jan 2025 - Feb 2025',
+    status: 'COMPLETE',
   },
   {
     title: 'Real-Time Stock Market App',
     description: 'Full-stack dashboard with live prices, interactive charts, and AI-powered insights using Finnhub API.',
     tags: ['Next.js 14', 'TypeScript', 'Redis'],
     date: 'Sep 2025 - Present',
+    status: 'IN_PROGRESS',
   },
   {
     title: 'Java Code Coach',
@@ -33,6 +36,7 @@ const projects = [
     tags: ['Java', 'Web', 'Education'],
     date: 'May 2025',
     link: 'https://lovable.dev/projects/3ba2c2d6-58f6-43fb-b4c9-8569d9263209',
+    status: 'DEPLOYED',
   },
 ];
 
@@ -44,6 +48,8 @@ const skillIcons: Record<string, string> = {
   'TypeScript': '/icons/typescript.png',
   'JavaScript': '/icons/javascript.png',
   'Swift': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+  'SQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg',
+  'R': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg',
   // Frontend
   'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
@@ -54,6 +60,8 @@ const skillIcons: Record<string, string> = {
   'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
   'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
   'Redis': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg',
+  'AWS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
+  'Docker': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
   // Tools
   'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
   'VS Code': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
@@ -63,20 +71,30 @@ const skillIcons: Record<string, string> = {
 };
 
 const skills = [
-  { category: 'Languages', icon: '{ }', items: ['Java', 'Python', 'C/C++', 'TypeScript', 'JavaScript', 'Swift'] },
-  { category: 'Frontend', icon: '◈', items: ['React', 'Next.js', 'HTML/CSS', 'React Native'] },
-  { category: 'Backend', icon: '⬡', items: ['Firebase', 'Node.js', 'MySQL', 'Redis'] },
+  { category: 'Languages', icon: '{ }', items: ['Java', 'Python', 'C/C++', 'SQL', 'TypeScript', 'JavaScript', 'Swift', 'R'] },
+  { category: 'Frontend', icon: '◈', items: ['React', 'Next.js', 'React Native', 'HTML/CSS'] },
+  { category: 'Backend', icon: '⬡', items: ['Firebase', 'Node.js', 'MySQL', 'Redis', 'AWS', 'Docker'] },
   { category: 'Tools', icon: '⚙', items: ['Git', 'VS Code', 'Figma', 'Xcode', 'Jupyter'] },
 ];
 
 const experiences = [
   {
+    role: 'Software Engineering Sprintern',
+    company: 'Google · Break Through Tech',
+    date: 'Jul 2026',
+    points: [
+      "Selected for Break Through Tech's competitive 3-week Sprinternship program placing top CS students at leading tech companies",
+      'Contributing to a team project at Google, collaborating with engineers to deliver production-ready work on a sprint timeline',
+    ],
+  },
+  {
     role: 'Software Developer (Dev Team)',
     company: 'UW Blockchain Society',
     date: 'Dec 2025 - Present',
     points: [
-      'Developed and shipped production web features for the UW Blockchain Society website using React and TypeScript',
-      'Built reusable frontend components for a student career portal within a cross-functional engineering team',
+      'Developed and shipped production features for the UW Blockchain Society website, giving students and recruiters real-time access to blockchain project listings',
+      'Implemented reusable frontend components for a student career portal using React and TypeScript, improving navigation clarity and accessibility',
+      'Contributed to a shared production codebase within a cross-functional student engineering team, streamlining code-review workflows',
     ],
   },
   {
@@ -93,17 +111,17 @@ const experiences = [
     company: 'AVELA',
     date: 'Sep 2024 - Present',
     points: [
-      'Facilitated mixed reality & coding workshops for 40+ high school students',
-      'Created and delivered 5+ STEM outreach workshops',
+      'Led Python and mixed-reality workshops for 40+ high school students, guiding participants to complete a final mixed-reality project',
+      'Designed and delivered 5+ STEM outreach workshops preparing college-bound students for intro CS coursework',
     ],
   },
   {
-    role: 'Database Intern',
-    company: 'Gold Crest LLC',
-    date: 'May 2023 - Sep 2023',
+    role: 'Mentor & Tutor',
+    company: 'Umoja and Promise, Highline College',
+    date: 'Sep 2022 - Jun 2024',
     points: [
-      'Managed database for 200+ client records',
-      'Identified 40+ data inconsistencies, enhancing record integrity by 35%',
+      'Tutored 50+ students in math (Algebra through Calculus) and English, improving grades and boosting retention in STEM courses',
+      'Organized and led 6+ academic workshops, growing attendance and leadership involvement across cohorts',
     ],
   },
 ];
@@ -145,11 +163,14 @@ export default function Home() {
                 color: 'var(--text-muted)',
                 textAlign: 'left',
               }}>
-                I'm a Computer Science student at the University of Washington who builds practical,
-                user-focused software. I enjoy working across the stack, from frontend interfaces to
-                backend systems, and I learn best by building real products rather than demos. My focus
-                is on turning ideas into clean, usable experiences. I care about writing thoughtful code
-                and designing software that people actually want to use.
+                I&apos;m a Computer Science student at the University of Washington (B.S. &apos;27, Informatics
+                minor) and an incoming Software Engineering Sprintern at Google through Break Through
+                Tech. I started at Highline College, where I earned my A.S. in Computer Science and
+                mentored 50+ students, before transferring to UW. Outside class I&apos;m building LoopIn, a
+                university app for study sessions and campus events, shipping features for the UW
+                Blockchain Society, and teaching Python and mixed-reality workshops to high school
+                students with AVELA. I learn best by shipping real products, and I care about writing
+                thoughtful code and designing software people actually want to use.
               </p>
             </AnimatedSection>
           </div>
@@ -182,7 +203,7 @@ export default function Home() {
                     {/* Category label */}
                     <span style={{
                       fontSize: '13px',
-                      fontFamily: 'JetBrains Mono, monospace',
+                      fontFamily: 'var(--font-mono), monospace',
                       color: 'var(--primary-color)',
                       minWidth: '100px',
                       display: 'flex',
@@ -303,7 +324,7 @@ export default function Home() {
                 fontSize: '1.5rem',
                 marginBottom: '32px',
               }}>
-                Let's Connect
+                Let&apos;s Connect
               </h2>
 
               {/* Circular Icon Buttons */}
@@ -429,7 +450,7 @@ export default function Home() {
             fontSize: '12px',
             color: 'var(--text-muted)',
           }} className="mono">
-            Design & Built by Yitbarek Ejigu © 2026
+            Designed & Built by Yitbarek Ejigu © {new Date().getFullYear()}
           </div>
         </section>
       </main>

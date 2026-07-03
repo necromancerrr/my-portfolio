@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import GradientBlobs from './GradientBlobs';
+import PixelLetter from './PixelLetter';
 
 export default function Hero() {
     return (
@@ -15,6 +17,10 @@ export default function Hero() {
             position: 'relative',
         }}>
             <GradientBlobs variant="hero" />
+
+            {/* Real heading for screen readers and search engines */}
+            <h1 className="sr-only">Yitbarek Ejigu — Software Engineer</h1>
+
             {/* Pixel Art Name - CodeVault Style */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -22,7 +28,7 @@ export default function Hero() {
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 style={{
                     marginTop: '40px',
-                    marginBottom: '60px',
+                    marginBottom: '32px',
                     overflow: 'hidden',
                     width: '100%',
                     maxWidth: '1000px',
@@ -32,24 +38,48 @@ export default function Hero() {
                 }}
             >
                 {/* Each letter rendered as pixel blocks */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(4px, 1.5vw, 24px)', flexWrap: 'nowrap', justifyContent: 'center' }}>
-                    {/* Y - Black */}
+                <div aria-hidden="true" style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(4px, 1.5vw, 24px)', flexWrap: 'nowrap', justifyContent: 'center' }}>
                     <PixelLetter letter="Y" color="var(--text-color)" />
-                    {/* i - Black */}
                     <PixelLetter letter="i" color="var(--text-color)" />
-                    {/* t - Black */}
                     <PixelLetter letter="t" color="var(--text-color)" />
-                    {/* b - Black */}
                     <PixelLetter letter="b" color="var(--text-color)" />
-                    {/* a - Blue */}
                     <PixelLetter letter="a" color="var(--primary-color)" />
-                    {/* r - Blue */}
                     <PixelLetter letter="r" color="var(--primary-color)" />
-                    {/* e - Blue */}
                     <PixelLetter letter="e" color="var(--primary-color)" />
-                    {/* k - Blue */}
                     <PixelLetter letter="k" color="var(--primary-color)" />
                 </div>
+            </motion.div>
+
+            {/* Tagline */}
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mono"
+                style={{
+                    fontSize: 'clamp(13px, 2.5vw, 16px)',
+                    color: 'var(--text-muted)',
+                    maxWidth: '640px',
+                    lineHeight: 1.7,
+                    marginBottom: '28px',
+                }}
+            >
+                CS @ University of Washington &apos;27 · Incoming SWE Sprintern @ Google · Founder of LoopIn
+            </motion.p>
+
+            {/* Call-to-action buttons */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}
+            >
+                <a href="#projects" className="btn btn-primary">
+                    View Projects
+                </a>
+                <Link href="/resume" className="btn btn-outline">
+                    Resume
+                </Link>
             </motion.div>
 
             {/* Hero Image with Floating Glass Elements */}
@@ -161,7 +191,7 @@ export default function Hero() {
                 >
                     {/* Window Header */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                        <span style={{ fontSize: '11px', color: '#ff6b6b', fontFamily: 'JetBrains Mono, monospace' }}>&lt;portfolio.tsx&gt;</span>
+                        <span style={{ fontSize: '11px', color: '#ff6b6b', fontFamily: 'var(--font-mono), monospace' }}>&lt;portfolio.tsx&gt;</span>
                         <div style={{ display: 'flex', gap: '6px' }}>
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f57' }} />
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#febc2e' }} />
@@ -169,9 +199,9 @@ export default function Hero() {
                         </div>
                     </div>
                     {/* Code Content */}
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', lineHeight: 1.7 }}>
-                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>React</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>'react'</span></div>
-                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>{'{ motion }'}</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>'framer'</span></div>
+                    <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: '11px', lineHeight: 1.7 }}>
+                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>React</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>{"'react'"}</span></div>
+                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>{'{ motion }'}</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>{"'framer'"}</span></div>
                         <div style={{ height: '8px' }} />
                         <div><span style={{ color: '#e879f9' }}>const</span> <span style={{ color: '#fb923c' }}>App</span> <span style={{ color: '#94a3b8' }}>=</span> <span style={{ color: '#94a3b8' }}>{'() =>'}</span> <span style={{ color: '#94a3b8' }}>{'{'}</span></div>
                         <div style={{ paddingLeft: '16px' }}><span style={{ color: '#e879f9' }}>return</span> <span style={{ color: '#94a3b8' }}>(</span></div>
@@ -313,8 +343,8 @@ export default function Hero() {
                 >
                     {/* Header */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                        <span style={{ fontSize: '10px', color: '#22c55e', fontFamily: 'JetBrains Mono, monospace' }}>● READY</span>
-                        <span style={{ fontSize: '9px', color: '#9ca3af', fontFamily: 'JetBrains Mono, monospace' }}>ARM-01</span>
+                        <span style={{ fontSize: '10px', color: '#22c55e', fontFamily: 'var(--font-mono), monospace' }}>● READY</span>
+                        <span style={{ fontSize: '9px', color: '#9ca3af', fontFamily: 'var(--font-mono), monospace' }}>ARM-01</span>
                     </div>
                     {/* Robotic Arm Illustration */}
                     <div style={{ position: 'relative', width: '120px', height: '90px' }}>
@@ -507,110 +537,5 @@ export default function Hero() {
                 ↓ scroll
             </motion.div>
         </section>
-    );
-}
-
-// Pixel letter component - renders each letter as a grid of blocks
-function PixelLetter({ letter, color }: { letter: string; color: string }) {
-    const size = 'clamp(4px, 1.6vw, 16px)';
-    const gap = 'clamp(1px, 0.25vw, 3px)';
-
-    // Define pixel patterns for each letter (5 wide x 7 tall grid)
-    const patterns: Record<string, number[][]> = {
-        'Y': [
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [0, 1, 0, 1, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-        ],
-        'i': [
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-        ],
-        't': [
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [1, 1, 1, 1, 1],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 1],
-        ],
-        'b': [
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 1, 1, 1, 0],
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 0],
-        ],
-        'a': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 0],
-            [0, 0, 0, 0, 1],
-            [0, 1, 1, 1, 1],
-            [1, 0, 0, 0, 1],
-            [0, 1, 1, 1, 1],
-        ],
-        'r': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [1, 0, 1, 1, 0],
-            [1, 1, 0, 0, 1],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-        ],
-        'e': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 0],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0],
-            [0, 1, 1, 1, 1],
-        ],
-        'k': [
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 1, 0],
-            [1, 0, 1, 0, 0],
-            [1, 1, 0, 0, 0],
-            [1, 0, 1, 0, 0],
-            [1, 0, 0, 1, 0],
-        ],
-    };
-
-    const pattern = patterns[letter] || patterns['a'];
-
-    return (
-        <div style={{
-            display: 'grid',
-            gridTemplateRows: `repeat(7, ${size})`,
-            gridTemplateColumns: `repeat(5, ${size})`,
-            gap: gap,
-        }}>
-            {pattern.flat().map((filled, i) => (
-                <div
-                    key={i}
-                    style={{
-                        width: size,
-                        height: size,
-                        backgroundColor: filled ? color : 'transparent',
-                        borderRadius: '1px',
-                    }}
-                />
-            ))}
-        </div>
     );
 }

@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Navigation from '@/components/Navigation';
 
 export default function ResumePage() {
     const handleDownload = () => {
         const link = document.createElement('a');
         link.href = '/RESUME.pdf';
-        link.download = 'Yitbarek_Resume.pdf';
+        link.download = 'Yitbarek_Ejigu_Resume.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -21,6 +22,8 @@ export default function ResumePage() {
             flexDirection: 'column',
             alignItems: 'center',
         }}>
+            <Navigation />
+
             {/* Navigation back */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -40,7 +43,7 @@ export default function ResumePage() {
                         gap: '8px',
                         color: 'var(--text-muted)',
                         textDecoration: 'none',
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'var(--font-mono), monospace',
                         fontSize: '14px',
                         transition: 'color 0.3s ease',
                     }}
@@ -71,9 +74,9 @@ export default function ResumePage() {
                 <p style={{
                     color: 'var(--text-muted)',
                     fontSize: '16px',
-                    fontFamily: 'JetBrains Mono, monospace',
+                    fontFamily: 'var(--font-mono), monospace',
                 }}>
-                    // view and download my latest resume
+                    {'// view and download my latest resume'}
                 </p>
             </motion.div>
 
@@ -105,7 +108,7 @@ export default function ResumePage() {
                         borderRadius: '12px',
                         fontSize: '14px',
                         fontWeight: 600,
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'var(--font-mono), monospace',
                         cursor: 'pointer',
                         boxShadow: '0 8px 24px rgba(60, 137, 231, 0.35)',
                     }}
@@ -133,7 +136,7 @@ export default function ResumePage() {
                         borderRadius: '12px',
                         fontSize: '14px',
                         fontWeight: 600,
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'var(--font-mono), monospace',
                         cursor: 'pointer',
                         textDecoration: 'none',
                         boxShadow: 'var(--glass-inner-border)',
@@ -186,7 +189,7 @@ export default function ResumePage() {
                         marginLeft: '12px',
                         fontSize: '13px',
                         color: 'var(--text-muted)',
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'var(--font-mono), monospace',
                     }}>
                         RESUME.pdf
                     </span>
@@ -194,7 +197,7 @@ export default function ResumePage() {
                         marginLeft: 'auto',
                         fontSize: '11px',
                         color: 'var(--primary-color)',
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'var(--font-mono), monospace',
                     }}>
                         ● latest version
                     </span>
@@ -227,12 +230,12 @@ export default function ResumePage() {
                     borderTop: '1px solid var(--glass-border)',
                     background: 'var(--glass-bg)',
                     fontSize: '11px',
-                    fontFamily: 'JetBrains Mono, monospace',
+                    fontFamily: 'var(--font-mono), monospace',
                     color: 'var(--text-muted)',
                 }}>
                     <span style={{ color: '#22c55e' }}>● PDF</span>
                     <span>1 Page</span>
-                    <span style={{ marginLeft: 'auto' }}>Yitbarek Wendimu</span>
+                    <span style={{ marginLeft: 'auto' }}>Yitbarek Ejigu</span>
                 </div>
             </motion.div>
 
@@ -245,11 +248,11 @@ export default function ResumePage() {
                     marginTop: '40px',
                     fontSize: '12px',
                     color: 'var(--text-muted)',
-                    fontFamily: 'JetBrains Mono, monospace',
+                    fontFamily: 'var(--font-mono), monospace',
                     textAlign: 'center',
                 }}
             >
-                Last updated: January 2025
+                Last updated: July 2026
             </motion.p>
         </div>
     );
