@@ -364,7 +364,7 @@ export default function Hero() {
                     }}
                     style={{
                         width: '100%',
-                        maxWidth: '420px',
+                        maxWidth: '540px',
                         borderRadius: '24px',
                         overflow: 'visible',
                         position: 'relative',
@@ -384,8 +384,8 @@ export default function Hero() {
                         zIndex: -1,
                     }} />
                     <motion.img
-                        src="/pixel-avatar.svg"
-                        alt="Pixel-art portrait of Yitbarek"
+                        src="/profile.svg"
+                        alt="Yitbarek"
                         initial={{ filter: 'drop-shadow(0 0 0 transparent)' }}
                         animate={{
                             filter: [
