@@ -13,10 +13,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ title, description, tags, link, date, status, index = 0 }: ProjectCardProps) {
-    // Different animation parameters for each card
-    const floatDuration = 4 + (index * 0.5);
-    const rotateDuration = 5 + (index * 0.7);
-    const floatDelay = index * 0.2;
+    const entranceDelay = index * 0.15;
     const baseRotation = index % 2 === 0 ? -1 : 1;
 
     const fileName = title.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
@@ -37,25 +34,7 @@ export default function ProjectCard({ title, description, tags, link, date, stat
                 rotate: baseRotation,
             }}
             viewport={{ once: true, margin: "-50px" }}
-            animate={{
-                y: [0, -8, 0],
-                rotate: [baseRotation, baseRotation * 0.5, baseRotation],
-            }}
-            transition={{
-                opacity: { duration: 0.6, delay: floatDelay },
-                y: {
-                    duration: floatDuration,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: floatDelay + 0.6
-                },
-                rotate: {
-                    duration: rotateDuration,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: floatDelay + 0.6
-                }
-            }}
+            transition={{ duration: 0.6, delay: entranceDelay, ease: 'easeOut' }}
             whileHover={{
                 scale: 1.02,
                 rotate: 0,

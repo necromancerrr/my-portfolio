@@ -21,11 +21,8 @@ export default function Hero() {
             {/* Real heading for screen readers and search engines */}
             <h1 className="sr-only">Yitbarek Ejigu — Software Engineer</h1>
 
-            {/* Pixel Art Name - CodeVault Style */}
-            <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            {/* Pixel Art Name - blocks assemble letter by letter on load */}
+            <div
                 style={{
                     marginTop: '40px',
                     marginBottom: '32px',
@@ -37,24 +34,24 @@ export default function Hero() {
                     gap: '0',
                 }}
             >
-                {/* Each letter rendered as pixel blocks */}
                 <div aria-hidden="true" style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(4px, 1.5vw, 24px)', flexWrap: 'nowrap', justifyContent: 'center' }}>
-                    <PixelLetter letter="Y" color="var(--text-color)" />
-                    <PixelLetter letter="i" color="var(--text-color)" />
-                    <PixelLetter letter="t" color="var(--text-color)" />
-                    <PixelLetter letter="b" color="var(--text-color)" />
-                    <PixelLetter letter="a" color="var(--primary-color)" />
-                    <PixelLetter letter="r" color="var(--primary-color)" />
-                    <PixelLetter letter="e" color="var(--primary-color)" />
-                    <PixelLetter letter="k" color="var(--primary-color)" />
+                    {(['Y', 'i', 't', 'b', 'a', 'r', 'e', 'k'] as const).map((letter, idx) => (
+                        <PixelLetter
+                            key={idx}
+                            letter={letter}
+                            color={idx < 4 ? 'var(--text-color)' : 'var(--primary-color)'}
+                            animateIn
+                            delay={idx * 0.08}
+                        />
+                    ))}
                 </div>
-            </motion.div>
+            </div>
 
             {/* Tagline */}
             <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
                 className="mono"
                 style={{
                     fontSize: 'clamp(13px, 2.5vw, 16px)',
@@ -64,14 +61,14 @@ export default function Hero() {
                     marginBottom: '28px',
                 }}
             >
-                CS @ University of Washington &apos;27 · Incoming SWE Sprintern @ Google · Founder of LoopIn
+                CS @ University of Washington &apos;27
             </motion.p>
 
             {/* Call-to-action buttons */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.6, delay: 0.85 }}
                 style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}
             >
                 <a href="#projects" className="btn btn-primary">
@@ -87,7 +84,7 @@ export default function Hero() {
                 position: 'relative',
                 width: '100%',
                 maxWidth: '700px',
-                marginTop: '50px',
+                marginTop: '24px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -149,23 +146,18 @@ export default function Hero() {
                     animate={{
                         opacity: 1,
                         x: 0,
-                        y: [0, -12, 0],
-                        rotate: [-3, -1, -3],
+                        rotate: -2,
+                        y: [0, -6, 0],
                     }}
                     transition={{
                         opacity: { duration: 0.8, delay: 0.5 },
                         x: { duration: 0.8, delay: 0.5 },
+                        rotate: { duration: 0.8, delay: 0.5 },
                         y: {
-                            duration: 5,
+                            duration: 8,
                             repeat: Infinity,
                             ease: "easeInOut",
-                            delay: 0.5
-                        },
-                        rotate: {
-                            duration: 6,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 0.5
+                            delay: 1.3
                         }
                     }}
                     whileHover={{
@@ -239,30 +231,18 @@ export default function Hero() {
                     animate={{
                         opacity: 1,
                         x: 0,
-                        y: [0, -8, 0],
-                        rotate: [2, 4, 2],
-                        scale: [1, 1.02, 1],
+                        rotate: 2,
+                        y: [0, -5, 0],
                     }}
                     transition={{
                         opacity: { duration: 0.8, delay: 0.6 },
                         x: { duration: 0.8, delay: 0.6 },
+                        rotate: { duration: 0.8, delay: 0.6 },
                         y: {
-                            duration: 4,
+                            duration: 7,
                             repeat: Infinity,
                             ease: "easeInOut",
-                            delay: 0.8
-                        },
-                        rotate: {
-                            duration: 5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 0.8
-                        },
-                        scale: {
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 0.8
+                            delay: 1.4
                         }
                     }}
                     whileHover={{
@@ -295,186 +275,22 @@ export default function Hero() {
                     <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>+</div>
                 </motion.div>
 
-                {/* Floating Robotic Arm Panel - Bottom Right */}
-                <motion.div
-                    className="floating-ui-element"
-                    initial={{ opacity: 0, x: 80, y: 40 }}
-                    animate={{
-                        opacity: 1,
-                        x: 0,
-                        y: [0, -15, 0],
-                        rotate: [2, -1, 2],
-                    }}
-                    transition={{
-                        opacity: { duration: 0.8, delay: 0.7 },
-                        x: { duration: 0.8, delay: 0.7 },
-                        y: {
-                            duration: 6,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 1
-                        },
-                        rotate: {
-                            duration: 7,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 1
-                        }
-                    }}
-                    whileHover={{
-                        scale: 1.08,
-                        rotate: 0,
-                        transition: { duration: 0.3 }
-                    }}
-                    style={{
-                        position: 'absolute',
-                        right: '-8%',
-                        bottom: '20%',
-                        background: 'var(--card-bg)',
-                        backdropFilter: 'blur(24px) saturate(180%)',
-                        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                        borderRadius: '20px',
-                        padding: '14px 18px',
-                        boxShadow: 'var(--glass-shadow), var(--glass-inner-border)',
-                        border: '1px solid var(--glass-border)',
-                        zIndex: 10,
-                        cursor: 'pointer',
-                    }}
-                >
-                    {/* Header */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                        <span style={{ fontSize: '10px', color: '#22c55e', fontFamily: 'var(--font-mono), monospace' }}>● READY</span>
-                        <span style={{ fontSize: '9px', color: '#9ca3af', fontFamily: 'var(--font-mono), monospace' }}>ARM-01</span>
-                    </div>
-                    {/* Robotic Arm Illustration */}
-                    <div style={{ position: 'relative', width: '120px', height: '90px' }}>
-                        {/* Base */}
-                        <div style={{
-                            position: 'absolute',
-                            bottom: '0',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            width: '40px',
-                            height: '12px',
-                            background: 'linear-gradient(180deg, #e5e7eb 0%, #9ca3af 100%)',
-                            borderRadius: '4px 4px 6px 6px',
-                        }} />
-                        {/* Base cylinder */}
-                        <div style={{
-                            position: 'absolute',
-                            bottom: '10px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            width: '28px',
-                            height: '20px',
-                            background: 'linear-gradient(90deg, #d1d5db 0%, #f3f4f6 50%, #d1d5db 100%)',
-                            borderRadius: '4px',
-                        }} />
-                        {/* Lower arm segment */}
-                        <div style={{
-                            position: 'absolute',
-                            bottom: '28px',
-                            left: '50%',
-                            transform: 'translateX(-50%) rotate(-30deg)',
-                            transformOrigin: 'bottom center',
-                            width: '14px',
-                            height: '35px',
-                            background: 'linear-gradient(90deg, #9ca3af 0%, #e5e7eb 40%, #f3f4f6 60%, #d1d5db 100%)',
-                            borderRadius: '6px',
-                        }}>
-                            {/* Joint circle */}
-                            <div style={{
-                                position: 'absolute',
-                                top: '-4px',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                width: '12px',
-                                height: '12px',
-                                background: 'linear-gradient(135deg, #f3f4f6 0%, #9ca3af 100%)',
-                                borderRadius: '50%',
-                                border: '2px solid #22c55e',
-                            }} />
-                        </div>
-                        {/* Upper arm segment */}
-                        <div style={{
-                            position: 'absolute',
-                            bottom: '52px',
-                            left: '32%',
-                            transform: 'rotate(-70deg)',
-                            transformOrigin: 'bottom right',
-                            width: '12px',
-                            height: '32px',
-                            background: 'linear-gradient(90deg, #9ca3af 0%, #e5e7eb 40%, #f3f4f6 60%, #d1d5db 100%)',
-                            borderRadius: '5px',
-                        }}>
-                            {/* Joint circle */}
-                            <div style={{
-                                position: 'absolute',
-                                top: '-4px',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                width: '10px',
-                                height: '10px',
-                                background: 'linear-gradient(135deg, #f3f4f6 0%, #9ca3af 100%)',
-                                borderRadius: '50%',
-                                border: '2px solid #22c55e',
-                            }} />
-                        </div>
-                        {/* Gripper/Claw */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '8px',
-                            left: '8px',
-                            width: '20px',
-                            height: '16px',
-                        }}>
-                            {/* Claw fingers */}
-                            <div style={{
-                                position: 'absolute',
-                                top: '0',
-                                left: '2px',
-                                width: '4px',
-                                height: '12px',
-                                background: '#22c55e',
-                                borderRadius: '2px',
-                                transform: 'rotate(-15deg)',
-                            }} />
-                            <div style={{
-                                position: 'absolute',
-                                top: '0',
-                                right: '2px',
-                                width: '4px',
-                                height: '12px',
-                                background: '#22c55e',
-                                borderRadius: '2px',
-                                transform: 'rotate(15deg)',
-                            }} />
-                        </div>
-                    </div>
-                    {/* Status indicators */}
-                    <div style={{ display: 'flex', gap: '8px', marginTop: '8px', justifyContent: 'center' }}>
-                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
-                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
-                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#60a5fa' }} />
-                    </div>
-                </motion.div>
-
                 {/* Main Hero Image with Floating Animation */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9, y: 20 }}
                     animate={{
                         opacity: 1,
                         scale: 1,
-                        y: [0, -10, 0],
+                        y: [0, -6, 0],
                     }}
                     transition={{
                         opacity: { duration: 0.8, delay: 0.2 },
                         scale: { duration: 0.8, delay: 0.2 },
                         y: {
-                            duration: 4,
+                            duration: 7,
                             repeat: Infinity,
                             ease: "easeInOut",
-                            delay: 1
+                            delay: 1.5
                         }
                     }}
                     style={{
