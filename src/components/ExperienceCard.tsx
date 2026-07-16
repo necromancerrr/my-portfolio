@@ -51,14 +51,21 @@ export default function ExperienceCard({ role, company, date, points, index, isL
                         willChange: 'transform',
                     }}
                 />
-                {/* Vertical line */}
+                {/* Vertical line - draws downward as the entry scrolls into view */}
                 {!isLast && (
-                    <div style={{
-                        width: '2px',
-                        flex: 1,
-                        background: 'linear-gradient(180deg, var(--primary-color) 0%, var(--glass-border) 100%)',
-                        marginTop: '8px',
-                    }} />
+                    <motion.div
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.9, delay: index * 0.15 + 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        style={{
+                            width: '2px',
+                            flex: 1,
+                            background: 'linear-gradient(180deg, var(--primary-color) 0%, var(--glass-border) 100%)',
+                            marginTop: '8px',
+                            transformOrigin: '50% 0%',
+                        }}
+                    />
                 )}
             </div>
 

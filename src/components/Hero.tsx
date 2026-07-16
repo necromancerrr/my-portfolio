@@ -1,12 +1,23 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import GradientBlobs from './GradientBlobs';
 import PixelLetter from './PixelLetter';
 
 export default function Hero() {
+    const sectionRef = useRef<HTMLElement>(null);
+    // Story-scroll exit: the hero gently recedes as the first chapter takes over.
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start start', 'end start'],
+    });
+    const exitOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+    const exitScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+    const exitY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+
     return (
-        <section style={{
+        <section ref={sectionRef} style={{
             minHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
@@ -19,6 +30,19 @@ export default function Hero() {
 
             {/* Real heading for screen readers and search engines */}
             <h1 className="sr-only">Yitbarek Ejigu — Software Engineer</h1>
+
+            <motion.div
+                style={{
+                    opacity: exitOpacity,
+                    scale: exitScale,
+                    y: exitY,
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    flex: 1,
+                }}
+            >
 
             {/* Pixel Art Name - blocks assemble letter by letter on load */}
             <div
@@ -60,7 +84,7 @@ export default function Hero() {
                     marginBottom: '28px',
                 }}
             >
-                CS @ University of Washington &apos;27
+                <span style={{ color: 'var(--primary-color)' }}>software engineer</span> · CS @ University of Washington &apos;27
             </motion.p>
 
             {/* Hero Image with Floating Glass Elements */}
@@ -416,10 +440,22 @@ export default function Hero() {
                 style={{
                     marginTop: 'auto',
                     paddingTop: '60px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '8px',
                 }}
                 className="mono"
             >
-                ↓ scroll
+                <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>scroll to read</span>
+                <motion.span
+                    aria-hidden="true"
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                    ↓
+                </motion.span>
+            </motion.div>
             </motion.div>
         </section>
     );

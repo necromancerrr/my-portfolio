@@ -5,6 +5,10 @@ import ExperienceCard from '@/components/ExperienceCard';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
 import GradientBlobs from '@/components/GradientBlobs';
 import SkillTag from '@/components/SkillTag';
+import ScrollProgress from '@/components/ScrollProgress';
+import Marquee from '@/components/Marquee';
+import SectionHeading from '@/components/SectionHeading';
+import RevealText from '@/components/RevealText';
 import Image from 'next/image';
 
 const projects = [
@@ -131,39 +135,47 @@ const contacts = [
   { name: 'Email', href: 'mailto:yejigu@uw.edu', icon: '/icons/email.png', iconSize: 22, external: false },
 ];
 
+const marqueeItems = [
+  'Software Engineer',
+  "UW CS '27",
+  'Founder · LoopIn',
+  'Incoming Google Sprintern',
+  'Full-Stack',
+  'Seattle, WA',
+];
+
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Navigation />
       <main>
         <Hero />
 
-        {/* ASCII Divider */}
-        <div className="ascii-divider">
-          {'─'.repeat(40)}
-        </div>
+        {/* Ticker strip - the story's title crawl */}
+        <Marquee items={marqueeItems} />
 
-        {/* About Section - Reference Style */}
+        {/* Chapter 01 - About */}
         <section id="about" className="section">
-          <div className="container" style={{ maxWidth: '800px' }}>
-            <AnimatedSection>
-              {/* Bold Heading */}
-              <h2 style={{
-                fontSize: 'clamp(48px, 8vw, 72px)',
-                fontWeight: 900,
-                color: 'var(--primary-color)',
-                textAlign: 'center',
-                marginBottom: '8px',
-                lineHeight: 1,
-              }}>
-                Who am I?
-              </h2>
-            </AnimatedSection>
+          <div className="container" style={{ maxWidth: '860px' }}>
+            <SectionHeading index={1} label="whoami" title="Who am I?" />
+
+            {/* Editorial statement, revealed word by word */}
+            <RevealText
+              className="statement"
+              style={{ marginBottom: '36px' }}
+              segments={[
+                { text: 'I turn ideas into' },
+                { text: 'clean, usable software', highlight: true },
+                { text: '— and I learn by' },
+                { text: 'shipping real products.', highlight: true },
+              ]}
+            />
 
             {/* Bio Paragraph */}
             <AnimatedSection delay={0.1}>
               <p style={{
-                fontSize: '18px',
+                fontSize: '17px',
                 lineHeight: 1.9,
                 color: 'var(--text-muted)',
                 textAlign: 'left',
@@ -178,18 +190,36 @@ export default function Home() {
                 thoughtful code and designing software people actually want to use.
               </p>
             </AnimatedSection>
+
+            {/* Numbers that back the story */}
+            <AnimatedSection delay={0.2}>
+              <div className="stat-row">
+                <div className="stat">
+                  <span className="stat-value">50+</span>
+                  <span className="stat-label">students mentored</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-value">100+</span>
+                  <span className="stat-label">students reached</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-value">1,100+</span>
+                  <span className="stat-label">matches modeled</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-value">Google</span>
+                  <span className="stat-label">incoming sprintern</span>
+                </div>
+              </div>
+            </AnimatedSection>
           </div>
         </section>
 
-        {/* Skills Section */}
+        {/* Chapter 02 - Skills */}
         <section id="skills" className="section" style={{ position: 'relative' }}>
           <GradientBlobs variant="skills" />
           <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '900px' }}>
-            <AnimatedSection>
-              <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '48px' }}>
-                Technical Skills
-              </h2>
-            </AnimatedSection>
+            <SectionHeading index={2} label="stack" title="Technical Skills" />
 
             {/* Simple flowing layout */}
             <div style={{
@@ -237,13 +267,11 @@ export default function Home() {
           ┌{'─'.repeat(15)}┐ PROJECTS ┌{'─'.repeat(15)}┐
         </div>
 
-        {/* Projects Section */}
+        {/* Chapter 03 - Projects */}
         <section id="projects" className="section" style={{ position: 'relative' }}>
           <GradientBlobs variant="projects" />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <AnimatedSection>
-              <h2 className="section-title" style={{ marginBottom: '48px' }}>Featured Projects</h2>
-            </AnimatedSection>
+            <SectionHeading index={3} label="builds" title="Featured Projects" />
             <StaggerContainer className="grid grid-2">
               {projects.map((project, index) => (
                 <StaggerItem key={project.title}>
@@ -254,13 +282,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Experience Section */}
+        {/* Chapter 04 - Experience */}
         <section id="experience" className="section" style={{ position: 'relative' }}>
           <GradientBlobs variant="experience" />
-          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <AnimatedSection>
-              <h2 className="section-title" style={{ marginBottom: '48px', textAlign: 'center' }}>Experience</h2>
-            </AnimatedSection>
+          <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '860px' }}>
+            <SectionHeading index={4} label="changelog" title="Experience" />
             <div style={{ maxWidth: '750px', margin: '0 auto' }}>
               {experiences.map((exp, index) => (
                 <ExperienceCard
@@ -274,23 +300,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact Section - Clean */}
+        {/* Chapter 05 - Contact: the closing CTA */}
         <section id="contact" style={{
           textAlign: 'center',
-          padding: '100px 24px 60px',
+          padding: '140px 24px 0',
         }}>
           <div className="container">
             <AnimatedSection>
-              {/* Simple Title */}
-              <h2 className="section-title" style={{
-                fontSize: '1.5rem',
-                marginBottom: '32px',
-              }}>
-                Let&apos;s Connect
+              <p className="section-eyebrow" style={{ marginBottom: '28px' }}>
+                {'// 05 — connect'}
+              </p>
+              <h2 className="display-title" style={{ marginBottom: '28px' }}>
+                Let&apos;s build<br />something real.
               </h2>
+              <p style={{
+                color: 'var(--text-muted)',
+                fontSize: '16px',
+                maxWidth: '460px',
+                margin: '0 auto 44px',
+                lineHeight: 1.8,
+              }}>
+                Open to internships, collaborations, and good conversations
+                about software worth shipping.
+              </p>
+
+              {/* Big email CTA */}
+              <a href="mailto:yejigu@uw.edu" className="contact-email" style={{ marginBottom: '56px' }}>
+                <span>yejigu@uw.edu</span>
+              </a>
 
               {/* Circular Icon Buttons */}
-              <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '60px' }}>
+              <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '56px' }}>
                 {contacts.map((contact) => (
                   <a
                     key={contact.name}
@@ -312,13 +352,11 @@ export default function Home() {
             </AnimatedSection>
           </div>
 
-          {/* Footer integrated */}
-          <div style={{
-            marginTop: '40px',
-            fontSize: '12px',
-            color: 'var(--text-muted)',
-          }} className="mono">
-            Designed & Built by Yitbarek Ejigu © {new Date().getFullYear()}
+          {/* Footer bar */}
+          <div className="footer-bar">
+            <span>© {new Date().getFullYear()} Yitbarek Ejigu</span>
+            <span>Designed & built from scratch · Next.js</span>
+            <a href="#">↑ back to top</a>
           </div>
         </section>
       </main>
