@@ -113,7 +113,7 @@ export default function ExperienceCard({ role, company, date, points, index, isL
                     <span style={{
                         fontSize: '13px',
                         color: 'var(--text-muted)',
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'var(--font-mono), monospace',
                         background: 'var(--glass-bg)',
                         padding: '6px 14px',
                         borderRadius: '20px',

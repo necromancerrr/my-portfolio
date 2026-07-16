@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import GradientBlobs from './GradientBlobs';
+import PixelLetter from './PixelLetter';
 
 export default function Hero() {
     return (
@@ -161,7 +162,7 @@ export default function Hero() {
                 >
                     {/* Window Header */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                        <span style={{ fontSize: '11px', color: '#ff6b6b', fontFamily: 'JetBrains Mono, monospace' }}>&lt;portfolio.tsx&gt;</span>
+                        <span style={{ fontSize: '11px', color: '#ff6b6b', fontFamily: 'var(--font-mono), monospace' }}>&lt;portfolio.tsx&gt;</span>
                         <div style={{ display: 'flex', gap: '6px' }}>
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f57' }} />
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#febc2e' }} />
@@ -169,9 +170,9 @@ export default function Hero() {
                         </div>
                     </div>
                     {/* Code Content */}
-                    <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', lineHeight: 1.7 }}>
-                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>React</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>'react'</span></div>
-                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>{'{ motion }'}</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>'framer'</span></div>
+                    <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: '11px', lineHeight: 1.7 }}>
+                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>React</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>{"'react'"}</span></div>
+                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>{'{ motion }'}</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>{"'framer'"}</span></div>
                         <div style={{ height: '8px' }} />
                         <div><span style={{ color: '#e879f9' }}>const</span> <span style={{ color: '#fb923c' }}>App</span> <span style={{ color: '#94a3b8' }}>=</span> <span style={{ color: '#94a3b8' }}>{'() =>'}</span> <span style={{ color: '#94a3b8' }}>{'{'}</span></div>
                         <div style={{ paddingLeft: '16px' }}><span style={{ color: '#e879f9' }}>return</span> <span style={{ color: '#94a3b8' }}>(</span></div>
@@ -313,8 +314,8 @@ export default function Hero() {
                 >
                     {/* Header */}
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-                        <span style={{ fontSize: '10px', color: '#22c55e', fontFamily: 'JetBrains Mono, monospace' }}>● READY</span>
-                        <span style={{ fontSize: '9px', color: '#9ca3af', fontFamily: 'JetBrains Mono, monospace' }}>ARM-01</span>
+                        <span style={{ fontSize: '10px', color: '#22c55e', fontFamily: 'var(--font-mono), monospace' }}>● READY</span>
+                        <span style={{ fontSize: '9px', color: '#9ca3af', fontFamily: 'var(--font-mono), monospace' }}>ARM-01</span>
                     </div>
                     {/* Robotic Arm Illustration */}
                     <div style={{ position: 'relative', width: '120px', height: '90px' }}>
@@ -510,107 +511,3 @@ export default function Hero() {
     );
 }
 
-// Pixel letter component - renders each letter as a grid of blocks
-function PixelLetter({ letter, color }: { letter: string; color: string }) {
-    const size = 'clamp(4px, 1.6vw, 16px)';
-    const gap = 'clamp(1px, 0.25vw, 3px)';
-
-    // Define pixel patterns for each letter (5 wide x 7 tall grid)
-    const patterns: Record<string, number[][]> = {
-        'Y': [
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [0, 1, 0, 1, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-        ],
-        'i': [
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-        ],
-        't': [
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [1, 1, 1, 1, 1],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 1, 0, 0],
-            [0, 0, 0, 1, 1],
-        ],
-        'b': [
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 1, 1, 1, 0],
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 0],
-        ],
-        'a': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 0],
-            [0, 0, 0, 0, 1],
-            [0, 1, 1, 1, 1],
-            [1, 0, 0, 0, 1],
-            [0, 1, 1, 1, 1],
-        ],
-        'r': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [1, 0, 1, 1, 0],
-            [1, 1, 0, 0, 1],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-        ],
-        'e': [
-            [0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 0],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0],
-            [0, 1, 1, 1, 1],
-        ],
-        'k': [
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0],
-            [1, 0, 0, 1, 0],
-            [1, 0, 1, 0, 0],
-            [1, 1, 0, 0, 0],
-            [1, 0, 1, 0, 0],
-            [1, 0, 0, 1, 0],
-        ],
-    };
-
-    const pattern = patterns[letter] || patterns['a'];
-
-    return (
-        <div style={{
-            display: 'grid',
-            gridTemplateRows: `repeat(7, ${size})`,
-            gridTemplateColumns: `repeat(5, ${size})`,
-            gap: gap,
-        }}>
-            {pattern.flat().map((filled, i) => (
-                <div
-                    key={i}
-                    style={{
-                        width: size,
-                        height: size,
-                        backgroundColor: filled ? color : 'transparent',
-                        borderRadius: '1px',
-                    }}
-                />
-            ))}
-        </div>
-    );
-}

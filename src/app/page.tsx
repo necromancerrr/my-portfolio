@@ -1,12 +1,11 @@
-"use client";
-
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import ExperienceCard from '@/components/ExperienceCard';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
 import GradientBlobs from '@/components/GradientBlobs';
-import { motion } from 'framer-motion';
+import SkillTag from '@/components/SkillTag';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -37,29 +36,29 @@ const projects = [
 ];
 
 const skillIcons: Record<string, string> = {
-  // Languages - your uploaded icons
+  // Languages
   'Java': '/icons/java.png',
   'Python': '/icons/python.png',
   'C/C++': '/icons/c.png',
   'TypeScript': '/icons/typescript.png',
   'JavaScript': '/icons/javascript.png',
-  'Swift': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+  'Swift': '/icons/swift.svg',
   // Frontend
-  'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-  'HTML/CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-  'React Native': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  'React': '/icons/react.svg',
+  'Next.js': '/icons/nextjs.svg',
+  'HTML/CSS': '/icons/html5.svg',
+  'React Native': '/icons/react.svg',
   // Backend
-  'Firebase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
-  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-  'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-  'Redis': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg',
+  'Firebase': '/icons/firebase.svg',
+  'Node.js': '/icons/nodejs.svg',
+  'MySQL': '/icons/mysql.svg',
+  'Redis': '/icons/redis.svg',
   // Tools
-  'Git': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-  'VS Code': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
-  'Figma': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
-  'Xcode': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xcode/xcode-original.svg',
-  'Jupyter': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',
+  'Git': '/icons/git.svg',
+  'VS Code': '/icons/vscode.svg',
+  'Figma': '/icons/figma.svg',
+  'Xcode': '/icons/xcode.svg',
+  'Jupyter': '/icons/jupyter.svg',
 };
 
 const skills = [
@@ -108,6 +107,12 @@ const experiences = [
   },
 ];
 
+const contacts = [
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/yitbareek/', icon: '/icons/linkedin.png', iconSize: 22, external: true },
+  { name: 'GitHub', href: 'https://github.com/necromancerrr', icon: '/icons/github.png', iconSize: 24, external: true },
+  { name: 'Email', href: 'mailto:yejigu@uw.edu', icon: '/icons/email.png', iconSize: 22, external: false },
+];
+
 export default function Home() {
   return (
     <>
@@ -145,7 +150,7 @@ export default function Home() {
                 color: 'var(--text-muted)',
                 textAlign: 'left',
               }}>
-                I'm a Computer Science student at the University of Washington who builds practical,
+                I&apos;m a Computer Science student at the University of Washington who builds practical,
                 user-focused software. I enjoy working across the stack, from frontend interfaces to
                 backend systems, and I learn best by building real products rather than demos. My focus
                 is on turning ideas into clean, usable experiences. I care about writing thoughtful code
@@ -182,7 +187,7 @@ export default function Home() {
                     {/* Category label */}
                     <span style={{
                       fontSize: '13px',
-                      fontFamily: 'JetBrains Mono, monospace',
+                      fontFamily: 'var(--font-mono), monospace',
                       color: 'var(--primary-color)',
                       minWidth: '100px',
                       display: 'flex',
@@ -196,52 +201,7 @@ export default function Home() {
                     {/* Skill tags */}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                       {skill.items.map((item, i) => (
-                        <motion.span
-                          key={item}
-                          className="tag"
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            opacity: { duration: 0.4, delay: i * 0.05 },
-                          }}
-                          whileHover={{
-                            scale: 1.05,
-                            y: -2,
-                            backgroundColor: 'var(--primary-color)',
-                            color: 'white',
-                          }}
-                          style={{
-                            background: 'var(--glass-bg)',
-                            backdropFilter: 'blur(10px)',
-                            border: '1px solid var(--glass-border)',
-                            padding: '8px 16px',
-                            borderRadius: '20px',
-                            fontSize: '13px',
-                            cursor: 'default',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            color: 'var(--text-color)',
-                          }}
-                        >
-                          {skillIcons[item] && (
-                            <img
-                              src={skillIcons[item]}
-                              alt={item}
-                              width={18}
-                              height={18}
-                              style={{
-                                width: '18px',
-                                height: '18px',
-                                objectFit: 'contain',
-                                // Invert Next.js icon for dark mode
-                                filter: item === 'Next.js' ? 'var(--icon-invert, none)' : 'none',
-                              }}
-                            />
-                          )}
-                          {item}
-                        </motion.span>
+                        <SkillTag key={item} item={item} icon={skillIcons[item]} index={i} />
                       ))}
                     </div>
                   </div>
@@ -305,128 +265,28 @@ export default function Home() {
                 fontSize: '1.5rem',
                 marginBottom: '32px',
               }}>
-                Let's Connect
+                Let&apos;s Connect
               </h2>
 
               {/* Circular Icon Buttons */}
               <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '60px' }}>
-                {/* LinkedIn */}
-                <a
-                  href="https://www.linkedin.com/in/yitbareek/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="LinkedIn"
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    border: '2px solid var(--text-color)',
-                    background: 'transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transition: 'all 0.3s ease',
-                    textDecoration: 'none',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--primary-color)';
-                    e.currentTarget.style.transform = 'scale(1.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--text-color)';
-                    e.currentTarget.style.transform = 'scale(1)';
-                  }}
-                >
-                  <img
-                    src="/icons/linkedin.png"
-                    alt="LinkedIn"
-                    width={22}
-                    height={22}
-                    style={{
-                      width: '22px',
-                      height: '22px',
-                      filter: 'var(--icon-filter, none)',
-                    }}
-                  />
-                </a>
-
-                {/* GitHub */}
-                <a
-                  href="https://github.com/necromancerrr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="GitHub"
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    border: '2px solid var(--text-color)',
-                    background: 'transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transition: 'all 0.3s ease',
-                    textDecoration: 'none',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--primary-color)';
-                    e.currentTarget.style.transform = 'scale(1.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--text-color)';
-                    e.currentTarget.style.transform = 'scale(1)';
-                  }}
-                >
-                  <img
-                    src="/icons/github.png"
-                    alt="GitHub"
-                    width={24}
-                    height={24}
-                    style={{
-                      width: '24px',
-                      height: '24px',
-                      filter: 'var(--icon-filter, none)',
-                    }}
-                  />
-                </a>
-
-                {/* Email */}
-                <a
-                  href="mailto:yejigu@uw.edu"
-                  title="Email"
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    border: '2px solid var(--text-color)',
-                    background: 'transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    transition: 'all 0.3s ease',
-                    textDecoration: 'none',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--primary-color)';
-                    e.currentTarget.style.transform = 'scale(1.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--text-color)';
-                    e.currentTarget.style.transform = 'scale(1)';
-                  }}
-                >
-                  <img
-                    src="/icons/email.png"
-                    alt="Email"
-                    width={22}
-                    height={22}
-                    style={{
-                      width: '22px',
-                      height: '22px',
-                      filter: 'var(--icon-filter, none)',
-                    }}
-                  />
-                </a>
+                {contacts.map((contact) => (
+                  <a
+                    key={contact.name}
+                    href={contact.href}
+                    title={contact.name}
+                    className="contact-icon-btn"
+                    {...(contact.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    <Image
+                      src={contact.icon}
+                      alt={contact.name}
+                      width={contact.iconSize}
+                      height={contact.iconSize}
+                      unoptimized
+                    />
+                  </a>
+                ))}
               </div>
             </AnimatedSection>
           </div>
