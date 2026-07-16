@@ -29,19 +29,11 @@ export default function ProjectCard({ title, description, tags, link, date, inde
     return (
         <motion.div
             className="floating-project-card"
-            initial={{ opacity: 0, y: 40, rotate: baseRotation * 2 }}
-            whileInView={{
-                opacity: 1,
-                y: 0,
-                rotate: baseRotation,
-            }}
-            viewport={{ once: true, margin: "-50px" }}
             animate={{
                 y: [0, -8, 0],
                 rotate: [baseRotation, baseRotation * 0.5, baseRotation],
             }}
             transition={{
-                opacity: { duration: 0.6, delay: floatDelay },
                 y: {
                     duration: floatDuration,
                     repeat: Infinity,

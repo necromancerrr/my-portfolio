@@ -229,6 +229,8 @@ export default function Home() {
                             <img
                               src={skillIcons[item]}
                               alt={item}
+                              width={18}
+                              height={18}
                               style={{
                                 width: '18px',
                                 height: '18px',
@@ -338,6 +340,8 @@ export default function Home() {
                   <img
                     src="/icons/linkedin.png"
                     alt="LinkedIn"
+                    width={22}
+                    height={22}
                     style={{
                       width: '22px',
                       height: '22px',
@@ -376,6 +380,8 @@ export default function Home() {
                   <img
                     src="/icons/github.png"
                     alt="GitHub"
+                    width={24}
+                    height={24}
                     style={{
                       width: '24px',
                       height: '24px',
@@ -412,6 +418,8 @@ export default function Home() {
                   <img
                     src="/icons/email.png"
                     alt="Email"
+                    width={22}
+                    height={22}
                     style={{
                       width: '22px',
                       height: '22px',
@@ -429,7 +437,7 @@ export default function Home() {
             fontSize: '12px',
             color: 'var(--text-muted)',
           }} className="mono">
-            Design & Built by Yitbarek Ejigu © 2026
+            Design & Built by Yitbarek Ejigu © {new Date().getFullYear()}
           </div>
         </section>
       </main>

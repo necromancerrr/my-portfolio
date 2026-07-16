@@ -232,7 +232,7 @@ export default function ResumePage() {
                 }}>
                     <span style={{ color: '#22c55e' }}>● PDF</span>
                     <span>1 Page</span>
-                    <span style={{ marginLeft: 'auto' }}>Yitbarek Wendimu</span>
+                    <span style={{ marginLeft: 'auto' }}>Yitbarek Ejigu</span>
                 </div>
             </motion.div>
 
@@ -249,7 +249,7 @@ export default function ResumePage() {
                     textAlign: 'center',
                 }}
             >
-                Last updated: January 2025
+                Last updated: January 2026
             </motion.p>
         </div>
     );
