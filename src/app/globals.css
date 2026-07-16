@@ -82,6 +82,26 @@ h6 {
   font-family: var(--font-mono), monospace;
 }
 
+/* Screen-reader-only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible focus for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* ASCII Art Styling */
 .ascii-art {
   font-family: var(--font-mono), monospace;
@@ -179,6 +199,8 @@ h6 {
 }
 
 .btn-primary:hover {
+  /* Keep text white: the global a:hover rule would otherwise turn it blue-on-blue */
+  color: white;
   transform: scale(1.05) translateY(-2px);
   box-shadow: 0 12px 32px rgba(60, 137, 231, 0.5);
 }
@@ -294,6 +316,23 @@ a:hover {
   color: var(--primary-color);
 }
 
+/* Blinking terminal cursor */
+.terminal-cursor {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-cursor {
+    animation: none;
+  }
+}
+
 /* Keyframes */
 @keyframes float {
 
@@ -331,23 +370,6 @@ a:hover {
     transform-origin: center center;
     animation: none !important;
   }
-
-  /* Position elements at screen edges, away from center/face */
-  .floating-ui-element:nth-of-type(1) {
-    left: -25% !important;
-    top: auto !important;
-    bottom: 35% !important;
-  }
-
-  .floating-ui-element:nth-of-type(2) {
-    right: 0% !important;
-    top: 30% !important;
-  }
-
-  .floating-ui-element:nth-of-type(3) {
-    right: -10% !important;
-    bottom: 10% !important;
-  }
 }
 
 @media (max-width: 480px) {
@@ -355,32 +377,8 @@ a:hover {
     transform: scale(0.4) !important;
   }
 
-  .floating-ui-element:nth-of-type(1) {
-    left: -35% !important;
-    bottom: 40% !important;
-  }
-
-  .floating-ui-element:nth-of-type(2) {
-    right: -5% !important;
-    top: 28% !important;
-  }
-
-  .floating-ui-element:nth-of-type(3) {
-    right: -20% !important;
-    bottom: 8% !important;
-  }
 }
 
-/* Floating Project Cards */
-.floating-project-card {
-  will-change: transform;
-}
-
-@media (max-width: 768px) {
-  .floating-project-card {
-    animation: none !important;
-  }
-}
 /* ==========================================
    NAVIGATION
    ========================================== */

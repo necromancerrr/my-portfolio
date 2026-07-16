@@ -8,14 +8,12 @@ interface ProjectCardProps {
     tags: string[];
     link?: string;
     date: string;
+    status?: string;
     index?: number;
 }
 
-export default function ProjectCard({ title, description, tags, link, date, index = 0 }: ProjectCardProps) {
-    // Different animation parameters for each card
-    const floatDuration = 4 + (index * 0.5);
-    const rotateDuration = 5 + (index * 0.7);
-    const floatDelay = index * 0.2;
+export default function ProjectCard({ title, description, tags, link, date, status, index = 0 }: ProjectCardProps) {
+    const entranceDelay = index * 0.15;
     const baseRotation = index % 2 === 0 ? -1 : 1;
 
     const fileName = title.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
@@ -29,24 +27,14 @@ export default function ProjectCard({ title, description, tags, link, date, inde
     return (
         <motion.div
             className="floating-project-card"
-            animate={{
-                y: [0, -8, 0],
-                rotate: [baseRotation, baseRotation * 0.5, baseRotation],
+            initial={{ opacity: 0, y: 40, rotate: baseRotation * 2 }}
+            whileInView={{
+                opacity: 1,
+                y: 0,
+                rotate: baseRotation,
             }}
-            transition={{
-                y: {
-                    duration: floatDuration,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: floatDelay + 0.6
-                },
-                rotate: {
-                    duration: rotateDuration,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: floatDelay + 0.6
-                }
-            }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: entranceDelay, ease: 'easeOut' }}
             whileHover={{
                 scale: 1.02,
                 rotate: 0,
@@ -155,7 +143,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                         <div style={{ paddingLeft: '16px' }}>
                             <span style={{ color: '#60a5fa' }}>name</span>
                             <span style={{ color: 'var(--text-color)' }}>: </span>
-                            <span style={{ color: '#22c55e' }}>&quot;{title}&quot;</span>
+                            <span style={{ color: '#22c55e' }}>{`"${title}"`}</span>
                             <span style={{ color: 'var(--text-color)' }}>,</span>
                         </div>
 
@@ -163,7 +151,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                         <div style={{ paddingLeft: '16px' }}>
                             <span style={{ color: '#60a5fa' }}>date</span>
                             <span style={{ color: 'var(--text-color)' }}>: </span>
-                            <span style={{ color: '#22c55e' }}>&quot;{date}&quot;</span>
+                            <span style={{ color: '#22c55e' }}>{`"${date}"`}</span>
                             <span style={{ color: 'var(--text-color)' }}>,</span>
                         </div>
 
@@ -173,7 +161,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                             <span style={{ color: 'var(--text-color)' }}>: [</span>
                             {tags.map((tag, i) => (
                                 <span key={tag}>
-                                    <span style={{ color: '#22c55e' }}>&quot;{tag}&quot;</span>
+                                    <span style={{ color: '#22c55e' }}>{`"${tag}"`}</span>
                                     {i < tags.length - 1 && <span style={{ color: 'var(--text-color)' }}>, </span>}
                                 </span>
                             ))}
@@ -184,7 +172,7 @@ export default function ProjectCard({ title, description, tags, link, date, inde
                         <div style={{ paddingLeft: '16px' }}>
                             <span style={{ color: '#60a5fa' }}>status</span>
                             <span style={{ color: 'var(--text-color)' }}>: </span>
-                            <span style={{ color: '#a78bfa' }}>DEPLOYED</span>
+                            <span style={{ color: '#a78bfa' }}>{status || (link ? 'DEPLOYED' : 'IN_PROGRESS')}</span>
                             <span style={{ color: 'var(--text-color)' }}>,</span>
                         </div>
 

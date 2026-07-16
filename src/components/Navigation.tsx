@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PixelLetter from './PixelLetter';
 
+// Paths are absolute so anchors work from any page (e.g. /resume)
 const navItems = [
-    { name: 'About', path: '#about' },
-    { name: 'Projects', path: '#projects' },
-    { name: 'Experience', path: '#experience' },
+    { name: 'About', path: '/#about' },
+    { name: 'Projects', path: '/#projects' },
+    { name: 'Experience', path: '/#experience' },
     { name: 'Resume', path: '/resume' },
-    { name: 'Contact', path: '#contact' },
+    { name: 'Contact', path: '/#contact' },
 ];
 
 export default function Navigation() {

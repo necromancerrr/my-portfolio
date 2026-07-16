@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Navigation from '@/components/Navigation';
 
 export default function ResumePage() {
     const handleDownload = () => {
         const link = document.createElement('a');
         link.href = '/RESUME.pdf';
-        link.download = 'Yitbarek_Resume.pdf';
+        link.download = 'Yitbarek_Ejigu_Resume.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -21,6 +22,8 @@ export default function ResumePage() {
             flexDirection: 'column',
             alignItems: 'center',
         }}>
+            <Navigation />
+
             {/* Navigation back */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -249,7 +252,7 @@ export default function ResumePage() {
                     textAlign: 'center',
                 }}
             >
-                Last updated: January 2026
+                Last updated: July 2026
             </motion.p>
         </div>
     );
