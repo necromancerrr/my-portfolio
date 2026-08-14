@@ -3,7 +3,6 @@ import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import ExperienceCard from '@/components/ExperienceCard';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
-import GradientBlobs from '@/components/GradientBlobs';
 import SkillTag from '@/components/SkillTag';
 import ScrollProgress from '@/components/ScrollProgress';
 import Marquee from '@/components/Marquee';
@@ -139,7 +138,7 @@ const marqueeItems = [
   'Software Engineer',
   "UW CS '27",
   'Founder · LoopIn',
-  'Incoming Google Sprintern',
+  'Google Sprintern',
   'Full-Stack',
   'Seattle, WA',
 ];
@@ -181,7 +180,7 @@ export default function Home() {
                 textAlign: 'left',
               }}>
                 I&apos;m a Computer Science student at the University of Washington (B.S. &apos;27, Informatics
-                minor) and an incoming Software Engineering Sprintern at Google through Break Through
+                minor) and a Software Engineering Sprintern at Google through Break Through
                 Tech. I started at Highline College, where I earned my A.S. in Computer Science and
                 mentored 50+ students, before transferring to UW. Outside class I&apos;m building LoopIn, a
                 university app for study sessions and campus events, shipping features for the UW
@@ -208,7 +207,7 @@ export default function Home() {
                 </div>
                 <div className="stat">
                   <span className="stat-value">Google</span>
-                  <span className="stat-label">incoming sprintern</span>
+                  <span className="stat-label">swe sprintern</span>
                 </div>
               </div>
             </AnimatedSection>
@@ -216,8 +215,7 @@ export default function Home() {
         </section>
 
         {/* Chapter 02 - Skills */}
-        <section id="skills" className="section" style={{ position: 'relative' }}>
-          <GradientBlobs variant="skills" />
+        <section id="skills" className="section section-muted" style={{ position: 'relative' }}>
           <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '900px' }}>
             <SectionHeading index={2} label="stack" title="Technical Skills" />
 
@@ -269,7 +267,6 @@ export default function Home() {
 
         {/* Chapter 03 - Projects */}
         <section id="projects" className="section" style={{ position: 'relative' }}>
-          <GradientBlobs variant="projects" />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <SectionHeading index={3} label="builds" title="Featured Projects" />
             <StaggerContainer className="grid grid-2">
@@ -283,8 +280,7 @@ export default function Home() {
         </section>
 
         {/* Chapter 04 - Experience */}
-        <section id="experience" className="section" style={{ position: 'relative' }}>
-          <GradientBlobs variant="experience" />
+        <section id="experience" className="section section-muted" style={{ position: 'relative' }}>
           <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '860px' }}>
             <SectionHeading index={4} label="changelog" title="Experience" />
             <div style={{ maxWidth: '750px', margin: '0 auto' }}>
