@@ -6,26 +6,26 @@ import { useRef } from 'react';
 
 const proofPoints = [
     { value: 'UW CS', label: 'B.S. 2027' },
+    { value: 'Google', label: 'SWE intern' },
     { value: '50+', label: 'students mentored' },
-    { value: '1,100+', label: 'matches modeled' },
 ];
 
 const selectedWork = [
+    {
+        title: 'AI career tool',
+        detail: 'React, D3, Gemini, BigQuery, and Cloud Run for a 200+ major exploration tool.',
+    },
     {
         title: 'LoopIn',
         detail: 'Founder-led university app for study sessions, events, and smarter scheduling.',
     },
     {
-        title: 'Match Predictor',
-        detail: 'ML pipeline with engineered features across 3+ Premier League seasons.',
-    },
-    {
-        title: 'Java Code Coach',
-        detail: 'Live feedback tool for UW-style Java conventions and code quality.',
+        title: 'Open source AI capstone',
+        detail: 'Submitted a stdlib package with tests, docs, declarations, and namespace exports.',
     },
 ];
 
-const stack = ['React Native', 'Next.js', 'Firebase', 'Python', 'TypeScript'];
+const stack = ['React', 'TypeScript', 'D3', 'Firebase', 'Google Cloud'];
 
 export default function Hero() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -52,8 +52,9 @@ export default function Hero() {
                     <p className="hero-eyebrow">Software engineer / UW CS / Seattle</p>
                     <h1 className="hero-title">Yitbarek Ejigu</h1>
                     <p className="hero-lede">
-                        I build practical, human-centered software: campus products, full-stack
-                        dashboards, ML experiments, and tools that make learning easier.
+                        I build practical, human-centered software: AI tools, campus products,
+                        data-rich interfaces, and learning systems that make complicated decisions
+                        easier to understand.
                     </p>
 
                     <div className="hero-actions">
@@ -88,11 +89,11 @@ export default function Hero() {
                     </div>
 
                     <div className="workbench-focus">
-                        <span className="workbench-kicker">Founder project</span>
-                        <h2>LoopIn university app</h2>
+                        <span className="workbench-kicker">Recent internship</span>
+                        <h2>AI career-exposure tool</h2>
                         <p>
-                            Study sessions, campus events, Firebase-backed product flows, and early
-                            AI-assisted scheduling features.
+                            Frontend for a two-level treemap over 200+ U.S. college majors, paired
+                            with a grounded Gemini advisor and deployed on Google Cloud Run.
                         </p>
                     </div>
 

@@ -252,7 +252,7 @@ export default function ResumePage() {
                     textAlign: 'center',
                 }}
             >
-                Last updated: July 2026
+                Last updated: August 2026
             </motion.p>
         </div>
     );

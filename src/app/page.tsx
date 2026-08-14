@@ -9,6 +9,16 @@ import SectionHeading from '@/components/SectionHeading';
 
 const projects = [
   {
+    title: 'AI Career-Exposure Tool',
+    role: 'Google SWE intern',
+    description:
+      'Frontend for an AI career-exposure tool with a two-level D3 treemap over 200+ U.S. college majors, sized by graduate count and colored by AI-exposure score.',
+    impact: 'Helped cut advisor time-to-first-token from 8.2s to 1.0s on a 4-person team.',
+    tags: ['React', 'TypeScript', 'D3', 'Gemini', 'Cloud Run'],
+    date: 'Jul 2026 - Aug 2026',
+    status: 'COMPLETE',
+  },
+  {
     title: 'LoopIn - University App',
     role: 'Founder and developer',
     description:
@@ -29,13 +39,13 @@ const projects = [
     status: 'COMPLETE',
   },
   {
-    title: 'Real-Time Stock Market App',
-    role: 'Full-stack developer',
+    title: '@stdlib/symbol/to-string-tag',
+    role: 'Open-source contributor',
     description:
-      'Dashboard concept with live prices, interactive charts, Redis-backed data paths, and AI-assisted market summaries.',
-    impact: 'Combines financial data, latency-aware UI, and plain-English insights.',
-    tags: ['Next.js 14', 'TypeScript', 'Redis'],
-    date: 'Sep 2025 - Present',
+      'Authored and submitted a new stdlib package with implementation, tests, TypeScript declarations, docs, and namespace exports.',
+    impact: '11-file contribution shaped around existing codebase patterns instead of rule suppression.',
+    tags: ['JavaScript', 'TypeScript', 'Testing', 'Docs'],
+    date: 'Jun 2026 - Present',
     status: 'IN_PROGRESS',
   },
   {
@@ -78,28 +88,29 @@ const skills = [
   {
     category: 'Product interfaces',
     summary: 'I build flows that feel clear, responsive, and usable on real devices.',
-    items: ['React', 'Next.js', 'React Native', 'TypeScript', 'JavaScript'],
+    items: ['React', 'Next.js', 'React Native', 'TypeScript', 'JavaScript', 'D3'],
   },
   {
     category: 'Data and backend',
     summary: 'I can take an idea from data model to working product behavior.',
-    items: ['Python', 'Firebase', 'Node.js', 'SQL', 'MySQL', 'Redis'],
+    items: ['Python', 'Firebase', 'Node.js', 'SQL', 'MySQL', 'Redis', 'Google Cloud'],
   },
   {
     category: 'Systems and tools',
     summary: 'I am comfortable shipping, debugging, documenting, and collaborating.',
-    items: ['Java', 'C/C++', 'AWS', 'Docker', 'Git', 'Figma', 'Jupyter'],
+    items: ['Java', 'C/C++', 'AWS', 'Docker', 'Git', 'Claude Code', 'Figma', 'Jupyter'],
   },
 ];
 
 const experiences = [
   {
-    role: 'Software Engineering Sprintern',
-    company: 'Google + Break Through Tech',
-    date: 'Jul 2026',
+    role: 'Software Engineering Intern',
+    company: 'Google, Breakthrough Sprintern',
+    date: 'Jul 2026 - Aug 2026',
     points: [
-      "Selected for Break Through Tech's competitive 3-week Sprinternship program placing CS students at leading tech companies.",
-      'Collaborated with engineers on a team project with a sprint timeline and production-quality expectations.',
+      'Built the frontend for an AI career-exposure tool using Vite, React, TypeScript, and D3.',
+      'Rendered a two-level treemap over 200+ U.S. college majors with search and click-through to a grounded Gemini advisor.',
+      'Helped reduce advisor time-to-first-token from 8.2s to 1.0s and deployed with Cloud Run, Cloud Build, BigQuery, API-key auth, rate limiting, and cost controls.',
     ],
   },
   {
@@ -141,6 +152,21 @@ const experiences = [
   },
 ];
 
+const development = [
+  {
+    title: 'CodePath AI 110',
+    status: 'Completed 2026',
+    detail:
+      'Built four AI projects spanning debugging, ML evaluation, recommendation systems, applied AI system design, RAG pipelines, and agentic workflows.',
+  },
+  {
+    title: 'CodePath AI 301',
+    status: 'In progress',
+    detail:
+      'Open-source capstone focused on production contribution habits: tests, TypeScript declarations, docs, namespace exports, and codebase-aligned implementation.',
+  },
+];
+
 const signals = [
   {
     label: 'Builder',
@@ -149,8 +175,8 @@ const signals = [
   },
   {
     label: 'Engineer',
-    value: 'Full-stack + ML',
-    detail: 'Comfortable moving between interfaces, data, backend, and modeling.',
+    value: 'AI + full-stack',
+    detail: 'Comfortable across interfaces, data, backend, AI tools, and deployment.',
   },
   {
     label: 'Community',
@@ -199,7 +225,7 @@ export default function Home() {
               <AnimatedSection delay={0.1}>
                 <p className="about-copy">
                   I&apos;m a Computer Science student at the University of Washington, a Google
-                  Software Engineering Sprintern through Break Through Tech, and the founder of
+                  Software Engineering Intern through Break Through Tech, and the founder of
                   LoopIn. I like work that sits close to real people: tools for students, products
                   with useful data, and interfaces that make complicated systems easier to trust.
                 </p>
@@ -265,6 +291,16 @@ export default function Home() {
             <div className="experience-list">
               {experiences.map((exp, index) => (
                 <ExperienceCard key={`${exp.role}-${exp.company}`} {...exp} index={index} />
+              ))}
+            </div>
+
+            <div className="development-grid">
+              {development.map((item) => (
+                <article className="development-card" key={item.title}>
+                  <span>{item.status}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </article>
               ))}
             </div>
           </div>
