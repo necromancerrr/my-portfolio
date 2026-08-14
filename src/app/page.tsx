@@ -2,40 +2,58 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import ExperienceCard from '@/components/ExperienceCard';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
-import GradientBlobs from '@/components/GradientBlobs';
+import AnimatedSection from '@/components/AnimatedSection';
 import SkillTag from '@/components/SkillTag';
 import ScrollProgress from '@/components/ScrollProgress';
-import Marquee from '@/components/Marquee';
 import SectionHeading from '@/components/SectionHeading';
-import RevealText from '@/components/RevealText';
-import Image from 'next/image';
 
 const projects = [
   {
+    title: 'AI Career-Exposure Tool',
+    role: 'Google SWE intern',
+    description:
+      'Frontend for an AI career-exposure tool with a two-level D3 treemap over 200+ U.S. college majors, sized by graduate count and colored by AI-exposure score.',
+    impact: 'Helped cut advisor time-to-first-token from 8.2s to 1.0s on a 4-person team.',
+    tags: ['React', 'TypeScript', 'D3', 'Gemini', 'Cloud Run'],
+    date: 'Jul 2026 - Aug 2026',
+    status: 'COMPLETE',
+  },
+  {
     title: 'LoopIn - University App',
-    description: 'Founder & developer. Cross-platform university app MVP with study sessions, campus events, Firebase auth/CRUD, and early AI-assisted scheduling features.',
+    role: 'Founder and developer',
+    description:
+      'Cross-platform university app MVP for study sessions, campus events, Firebase auth/CRUD, and early AI-assisted scheduling.',
+    impact: 'Turns scattered campus coordination into a product students can actually use.',
     tags: ['React Native', 'Firebase', 'TypeScript'],
     date: 'Jun 2025 - Present',
     status: 'IN_PROGRESS',
   },
   {
     title: 'Premier League Match Predictor',
-    description: 'ML model achieving ~68% accuracy across 3+ seasons, a 12% improvement over baseline. Engineered features from 1,100+ matches with Logistic Regression and Random Forest classifiers.',
+    role: 'ML engineer',
+    description:
+      'Prediction pipeline using features engineered from 1,100+ matches across 3+ seasons with Logistic Regression and Random Forest classifiers.',
+    impact: '~68% accuracy, a 12% lift over baseline.',
     tags: ['Python', 'scikit-learn', 'ML'],
     date: 'Jan 2025 - Feb 2025',
     status: 'COMPLETE',
   },
   {
-    title: 'Real-Time Stock Market App',
-    description: 'Full-stack dashboard with live prices, interactive charts, and AI-powered insights using Finnhub API.',
-    tags: ['Next.js 14', 'TypeScript', 'Redis'],
-    date: 'Sep 2025 - Present',
+    title: '@stdlib/symbol/to-string-tag',
+    role: 'Open-source contributor',
+    description:
+      'Authored and submitted a new stdlib package with implementation, tests, TypeScript declarations, docs, and namespace exports.',
+    impact: '11-file contribution shaped around existing codebase patterns instead of rule suppression.',
+    tags: ['JavaScript', 'TypeScript', 'Testing', 'Docs'],
+    date: 'Jun 2026 - Present',
     status: 'IN_PROGRESS',
   },
   {
     title: 'Java Code Coach',
-    description: 'Web app that checks Java code against UW CSF style guidelines with live editor and inline feedback system.',
+    role: 'Product builder',
+    description:
+      'Web app that checks Java code against UW CSF style guidelines with a live editor and inline feedback loop.',
+    impact: 'Makes style feedback faster, more consistent, and easier to act on.',
     tags: ['Java', 'Web', 'Education'],
     date: 'May 2025',
     link: 'https://lovable.dev/projects/3ba2c2d6-58f6-43fb-b4c9-8569d9263209',
@@ -44,60 +62,65 @@ const projects = [
 ];
 
 const skillIcons: Record<string, string> = {
-  // Languages
-  'Java': '/icons/java.png',
-  'Python': '/icons/python.png',
+  Java: '/icons/java.png',
+  Python: '/icons/python.png',
   'C/C++': '/icons/c.png',
-  'TypeScript': '/icons/typescript.png',
-  'JavaScript': '/icons/javascript.png',
-  'Swift': '/icons/swift.svg',
-  'SQL': '/icons/sql.svg',
-  'R': '/icons/r.svg',
-  // Frontend
-  'React': '/icons/react.svg',
+  TypeScript: '/icons/typescript.png',
+  JavaScript: '/icons/javascript.png',
+  Swift: '/icons/swift.svg',
+  SQL: '/icons/sql.svg',
+  R: '/icons/r.svg',
+  React: '/icons/react.svg',
   'Next.js': '/icons/nextjs.svg',
-  'HTML/CSS': '/icons/html5.svg',
   'React Native': '/icons/react.svg',
-  // Backend
-  'Firebase': '/icons/firebase.svg',
+  Firebase: '/icons/firebase.svg',
   'Node.js': '/icons/nodejs.svg',
-  'MySQL': '/icons/mysql.svg',
-  'Redis': '/icons/redis.svg',
-  'AWS': '/icons/aws.svg',
-  'Docker': '/icons/docker.svg',
-  // Tools
-  'Git': '/icons/git.svg',
-  'VS Code': '/icons/vscode.svg',
-  'Figma': '/icons/figma.svg',
-  'Xcode': '/icons/xcode.svg',
-  'Jupyter': '/icons/jupyter.svg',
+  MySQL: '/icons/mysql.svg',
+  Redis: '/icons/redis.svg',
+  AWS: '/icons/aws.svg',
+  Docker: '/icons/docker.svg',
+  Git: '/icons/git.svg',
+  Figma: '/icons/figma.svg',
+  Jupyter: '/icons/jupyter.svg',
 };
 
 const skills = [
-  { category: 'Languages', icon: '{ }', items: ['Java', 'Python', 'C/C++', 'SQL', 'TypeScript', 'JavaScript', 'Swift', 'R'] },
-  { category: 'Frontend', icon: '◈', items: ['React', 'Next.js', 'React Native', 'HTML/CSS'] },
-  { category: 'Backend', icon: '⬡', items: ['Firebase', 'Node.js', 'MySQL', 'Redis', 'AWS', 'Docker'] },
-  { category: 'Tools', icon: '⚙', items: ['Git', 'VS Code', 'Figma', 'Xcode', 'Jupyter'] },
+  {
+    category: 'Product interfaces',
+    summary: 'I build flows that feel clear, responsive, and usable on real devices.',
+    items: ['React', 'Next.js', 'React Native', 'TypeScript', 'JavaScript', 'D3'],
+  },
+  {
+    category: 'Data and backend',
+    summary: 'I can take an idea from data model to working product behavior.',
+    items: ['Python', 'Firebase', 'Node.js', 'SQL', 'MySQL', 'Redis', 'Google Cloud'],
+  },
+  {
+    category: 'Systems and tools',
+    summary: 'I am comfortable shipping, debugging, documenting, and collaborating.',
+    items: ['Java', 'C/C++', 'AWS', 'Docker', 'Git', 'Claude Code', 'Figma', 'Jupyter'],
+  },
 ];
 
 const experiences = [
   {
-    role: 'Software Engineering Sprintern',
-    company: 'Google · Break Through Tech',
-    date: 'Jul 2026',
+    role: 'Software Engineering Intern',
+    company: 'Google, Breakthrough Sprintern',
+    date: 'Jul 2026 - Aug 2026',
     points: [
-      "Selected for Break Through Tech's competitive 3-week Sprinternship program placing top CS students at leading tech companies",
-      'Contributing to a team project at Google, collaborating with engineers to deliver production-ready work on a sprint timeline',
+      'Built the frontend for an AI career-exposure tool using Vite, React, TypeScript, and D3.',
+      'Rendered a two-level treemap over 200+ U.S. college majors with search and click-through to a grounded Gemini advisor.',
+      'Helped reduce advisor time-to-first-token from 8.2s to 1.0s and deployed with Cloud Run, Cloud Build, BigQuery, API-key auth, rate limiting, and cost controls.',
     ],
   },
   {
-    role: 'Software Developer (Dev Team)',
+    role: 'Software Developer, Dev Team',
     company: 'UW Blockchain Society',
     date: 'Dec 2025 - Present',
     points: [
-      'Developed and shipped production features for the UW Blockchain Society website, giving students and recruiters real-time access to blockchain project listings',
-      'Implemented reusable frontend components for a student career portal using React and TypeScript, improving navigation clarity and accessibility',
-      'Contributed to a shared production codebase within a cross-functional student engineering team, streamlining code-review workflows',
+      'Shipped production website features for student and recruiter access to blockchain project listings.',
+      'Built reusable React and TypeScript components for a student career portal with clearer navigation.',
+      'Contributed to a shared team codebase through code review and cross-functional planning.',
     ],
   },
   {
@@ -105,43 +128,74 @@ const experiences = [
     company: 'Google Development Club, University of Washington',
     date: 'Jan 2025 - Present',
     points: [
-      'Coordinated 4+ events with BITS, IUGA, and ColorStack, reaching 100+ students',
-      'Boosted attendance by 40% through targeted outreach and themed programming',
+      'Coordinated 4+ events with BITS, IUGA, and ColorStack, reaching 100+ students.',
+      'Raised attendance by 40% through targeted outreach and stronger event positioning.',
     ],
   },
   {
-    role: 'Python & Mixed Reality Instructor',
+    role: 'Python and Mixed Reality Instructor',
     company: 'AVELA',
     date: 'Sep 2024 - Present',
     points: [
-      'Led Python and mixed-reality workshops for 40+ high school students, guiding participants to complete a final mixed-reality project',
-      'Designed and delivered 5+ STEM outreach workshops preparing college-bound students for intro CS coursework',
+      'Led Python and mixed-reality workshops for 40+ high school students.',
+      'Designed 5+ STEM outreach workshops for students preparing for college-level CS.',
     ],
   },
   {
-    role: 'Mentor & Tutor',
+    role: 'Mentor and Tutor',
     company: 'Umoja and Promise, Highline College',
     date: 'Sep 2022 - Jun 2024',
     points: [
-      'Tutored 50+ students in math (Algebra through Calculus) and English, improving grades and boosting retention in STEM courses',
-      'Organized and led 6+ academic workshops, growing attendance and leadership involvement across cohorts',
+      'Tutored 50+ students in math and English, supporting retention in STEM courses.',
+      'Organized 6+ academic workshops that grew attendance and student leadership.',
     ],
   },
 ];
 
-const contacts = [
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/yitbareek/', icon: '/icons/linkedin.png', iconSize: 22, external: true },
-  { name: 'GitHub', href: 'https://github.com/necromancerrr', icon: '/icons/github.png', iconSize: 24, external: true },
-  { name: 'Email', href: 'mailto:yejigu@uw.edu', icon: '/icons/email.png', iconSize: 22, external: false },
+const development = [
+  {
+    title: 'CodePath AI 110',
+    status: 'Completed 2026',
+    detail:
+      'Built four AI projects spanning debugging, ML evaluation, recommendation systems, applied AI system design, RAG pipelines, and agentic workflows.',
+  },
+  {
+    title: 'CodePath AI 301',
+    status: 'In progress',
+    detail:
+      'Open-source capstone focused on production contribution habits: tests, TypeScript declarations, docs, namespace exports, and codebase-aligned implementation.',
+  },
 ];
 
-const marqueeItems = [
-  'Software Engineer',
-  "UW CS '27",
-  'Founder · LoopIn',
-  'Incoming Google Sprintern',
-  'Full-Stack',
-  'Seattle, WA',
+const signals = [
+  {
+    label: 'Builder',
+    value: 'Founder of LoopIn',
+    detail: 'Turning campus pain points into a shipped mobile product.',
+  },
+  {
+    label: 'Engineer',
+    value: 'AI + full-stack',
+    detail: 'Comfortable across interfaces, data, backend, AI tools, and deployment.',
+  },
+  {
+    label: 'Community',
+    value: 'Mentor and organizer',
+    detail: '50+ students mentored and 100+ students reached through events.',
+  },
+];
+
+const principles = [
+  'Make the first useful version real.',
+  'Design for people who are busy.',
+  'Use data to sharpen judgment.',
+  'Write code the next person can understand.',
+];
+
+const contacts = [
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/yitbareek/', external: true },
+  { name: 'GitHub', href: 'https://github.com/necromancerrr', external: true },
+  { name: 'Email', href: 'mailto:yejigu@uw.edu', external: false },
 ];
 
 export default function Home() {
@@ -152,109 +206,55 @@ export default function Home() {
       <main>
         <Hero />
 
-        {/* Ticker strip - the story's title crawl */}
-        <Marquee items={marqueeItems} />
+        <section className="signal-strip" aria-label="Portfolio signals">
+          <div className="container signal-grid">
+            {signals.map((signal) => (
+              <article className="signal-card" key={signal.label}>
+                <span>{signal.label}</span>
+                <strong>{signal.value}</strong>
+                <p>{signal.detail}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
-        {/* Chapter 01 - About */}
         <section id="about" className="section">
-          <div className="container" style={{ maxWidth: '860px' }}>
-            <SectionHeading index={1} label="whoami" title="Who am I?" />
+          <div className="container two-column">
+            <div>
+              <SectionHeading index={1} label="about" title="What I bring" />
+              <AnimatedSection delay={0.1}>
+                <p className="about-copy">
+                  I&apos;m a Computer Science student at the University of Washington, a Google
+                  Software Engineering Intern through Break Through Tech, and the founder of
+                  LoopIn. I like work that sits close to real people: tools for students, products
+                  with useful data, and interfaces that make complicated systems easier to trust.
+                </p>
+              </AnimatedSection>
+            </div>
 
-            {/* Editorial statement, revealed word by word */}
-            <RevealText
-              className="statement"
-              style={{ marginBottom: '36px' }}
-              segments={[
-                { text: 'I turn ideas into' },
-                { text: 'clean, usable software', highlight: true },
-                { text: '— and I learn by' },
-                { text: 'shipping real products.', highlight: true },
-              ]}
-            />
-
-            {/* Bio Paragraph */}
-            <AnimatedSection delay={0.1}>
-              <p style={{
-                fontSize: '17px',
-                lineHeight: 1.9,
-                color: 'var(--text-muted)',
-                textAlign: 'left',
-              }}>
-                I&apos;m a Computer Science student at the University of Washington (B.S. &apos;27, Informatics
-                minor) and an incoming Software Engineering Sprintern at Google through Break Through
-                Tech. I started at Highline College, where I earned my A.S. in Computer Science and
-                mentored 50+ students, before transferring to UW. Outside class I&apos;m building LoopIn, a
-                university app for study sessions and campus events, shipping features for the UW
-                Blockchain Society, and teaching Python and mixed-reality workshops to high school
-                students with AVELA. I learn best by shipping real products, and I care about writing
-                thoughtful code and designing software people actually want to use.
-              </p>
-            </AnimatedSection>
-
-            {/* Numbers that back the story */}
-            <AnimatedSection delay={0.2}>
-              <div className="stat-row">
-                <div className="stat">
-                  <span className="stat-value">50+</span>
-                  <span className="stat-label">students mentored</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-value">100+</span>
-                  <span className="stat-label">students reached</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-value">1,100+</span>
-                  <span className="stat-label">matches modeled</span>
-                </div>
-                <div className="stat">
-                  <span className="stat-value">Google</span>
-                  <span className="stat-label">incoming sprintern</span>
-                </div>
-              </div>
+            <AnimatedSection delay={0.2} className="principle-panel">
+              <p className="panel-kicker">Working principles</p>
+              <ul>
+                {principles.map((principle) => (
+                  <li key={principle}>{principle}</li>
+                ))}
+              </ul>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* Chapter 02 - Skills */}
-        <section id="skills" className="section" style={{ position: 'relative' }}>
-          <GradientBlobs variant="skills" />
-          <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '900px' }}>
-            <SectionHeading index={2} label="stack" title="Technical Skills" />
-
-            {/* Simple flowing layout */}
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '32px',
-            }}>
+        <section id="skills" className="section section-muted">
+          <div className="container">
+            <SectionHeading index={2} label="capabilities" title="How I build" />
+            <div className="skill-grid">
               {skills.map((skill, catIndex) => (
-                <AnimatedSection key={skill.category} delay={catIndex * 0.1}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '16px',
-                    flexWrap: 'wrap',
-                  }}>
-                    {/* Category label */}
-                    <span style={{
-                      fontSize: '13px',
-                      fontFamily: 'var(--font-mono), monospace',
-                      color: 'var(--primary-color)',
-                      minWidth: '100px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                    }}>
-                      <span style={{ opacity: 0.7 }}>{skill.icon}</span>
-                      {skill.category}
-                    </span>
-
-                    {/* Skill tags */}
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                      {skill.items.map((item, i) => (
-                        <SkillTag key={item} item={item} icon={skillIcons[item]} index={i} />
-                      ))}
-                    </div>
+                <AnimatedSection key={skill.category} delay={catIndex * 0.08} className="skill-group">
+                  <h3>{skill.category}</h3>
+                  <p>{skill.summary}</p>
+                  <div className="skill-tags">
+                    {skill.items.map((item, i) => (
+                      <SkillTag key={item} item={item} icon={skillIcons[item]} index={i} />
+                    ))}
                   </div>
                 </AnimatedSection>
               ))}
@@ -262,101 +262,82 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ASCII Divider */}
-        <div className="ascii-divider">
-          ┌{'─'.repeat(15)}┐ PROJECTS ┌{'─'.repeat(15)}┐
-        </div>
-
-        {/* Chapter 03 - Projects */}
-        <section id="projects" className="section" style={{ position: 'relative' }}>
-          <GradientBlobs variant="projects" />
-          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <SectionHeading index={3} label="builds" title="Featured Projects" />
-            <StaggerContainer className="grid grid-2">
+        <section id="projects" className="section">
+          <div className="container">
+            <div className="section-intro">
+              <SectionHeading index={3} label="selected work" title="Projects with a point" />
+              <p>
+                Each project is here because it shows a useful engineering signal: product
+                judgment, data thinking, implementation depth, or care for learners.
+              </p>
+            </div>
+            <div className="project-grid">
               {projects.map((project, index) => (
-                <StaggerItem key={project.title}>
-                  <ProjectCard {...project} index={index} />
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
-          </div>
-        </section>
-
-        {/* Chapter 04 - Experience */}
-        <section id="experience" className="section" style={{ position: 'relative' }}>
-          <GradientBlobs variant="experience" />
-          <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '860px' }}>
-            <SectionHeading index={4} label="changelog" title="Experience" />
-            <div style={{ maxWidth: '750px', margin: '0 auto' }}>
-              {experiences.map((exp, index) => (
-                <ExperienceCard
-                  key={exp.role}
-                  {...exp}
-                  index={index}
-                  isLast={index === experiences.length - 1}
-                />
+                <ProjectCard key={project.title} {...project} index={index} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Chapter 05 - Contact: the closing CTA */}
-        <section id="contact" style={{
-          textAlign: 'center',
-          padding: '140px 24px 0',
-        }}>
+        <section id="experience" className="section section-muted">
           <div className="container">
-            <AnimatedSection>
-              <p className="section-eyebrow" style={{ marginBottom: '28px' }}>
-                {'// 05 — connect'}
+            <div className="section-intro">
+              <SectionHeading index={4} label="experience" title="Where I have practiced" />
+              <p>
+                A mix of software work, teaching, mentoring, and student leadership. The through
+                line is building things that help people move faster.
               </p>
-              <h2 className="display-title" style={{ marginBottom: '28px' }}>
-                Let&apos;s build<br />something real.
-              </h2>
-              <p style={{
-                color: 'var(--text-muted)',
-                fontSize: '16px',
-                maxWidth: '460px',
-                margin: '0 auto 44px',
-                lineHeight: 1.8,
-              }}>
-                Open to internships, collaborations, and good conversations
-                about software worth shipping.
-              </p>
+            </div>
+            <div className="experience-list">
+              {experiences.map((exp, index) => (
+                <ExperienceCard key={`${exp.role}-${exp.company}`} {...exp} index={index} />
+              ))}
+            </div>
 
-              {/* Big email CTA */}
-              <a href="mailto:yejigu@uw.edu" className="contact-email" style={{ marginBottom: '56px' }}>
-                <span>yejigu@uw.edu</span>
+            <div className="development-grid">
+              {development.map((item) => (
+                <article className="development-card" key={item.title}>
+                  <span>{item.status}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="contact-section">
+          <div className="container contact-shell">
+            <div>
+              <p className="section-eyebrow">{'// 05 - connect'}</p>
+              <h2 className="display-title">Let&apos;s build something useful.</h2>
+            </div>
+            <div className="contact-copy">
+              <p>
+                Open to internships, collaborations, and conversations about software worth
+                shipping.
+              </p>
+              <a href="mailto:yejigu@uw.edu" className="contact-email">
+                yejigu@uw.edu
               </a>
-
-              {/* Circular Icon Buttons */}
-              <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '56px' }}>
+              <div className="contact-links">
                 {contacts.map((contact) => (
                   <a
                     key={contact.name}
                     href={contact.href}
-                    title={contact.name}
-                    className="contact-icon-btn"
                     {...(contact.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   >
-                    <Image
-                      src={contact.icon}
-                      alt={contact.name}
-                      width={contact.iconSize}
-                      height={contact.iconSize}
-                      unoptimized
-                    />
+                    {contact.name}
                   </a>
                 ))}
               </div>
-            </AnimatedSection>
+            </div>
           </div>
 
-          {/* Footer bar */}
           <div className="footer-bar">
             <span>© {new Date().getFullYear()} Yitbarek Ejigu</span>
-            <span>Designed & built from scratch · Next.js</span>
-            <a href="#">↑ back to top</a>
+            <span>Designed and built with Next.js</span>
+            <a href="#">Back to top</a>
           </div>
         </section>
       </main>

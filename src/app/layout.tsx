@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 const siteUrl = 'https://my-portfolio-eta-mocha-48.vercel.app';
 const title = 'Yitbarek Ejigu | Software Engineer';
 const description =
-  'Portfolio of Yitbarek Ejigu — Computer Science student at the University of Washington, full-stack developer, founder of LoopIn, and incoming Software Engineering Sprintern at Google.';
+  'Portfolio of Yitbarek Ejigu — Computer Science student at the University of Washington, AI and full-stack builder, founder of LoopIn, and Software Engineering Intern at Google.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

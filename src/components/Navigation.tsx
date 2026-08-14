@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import PixelLetter from './PixelLetter';
 
 // Paths are absolute so anchors work from any page (e.g. /resume)
 const navItems = [
@@ -45,8 +44,8 @@ export default function Navigation() {
                 className="nav-pill"
                 style={{
                     boxShadow: scrolled
-                        ? '0 8px 32px rgba(0, 195, 255, 0.15)'
-                        : '0 4px 20px rgba(0, 0, 0, 0.1)',
+                        ? '0 14px 44px rgba(15, 118, 110, 0.16)'
+                        : '0 8px 28px rgba(21, 25, 23, 0.08)',
                 }}
             >
                 <div style={{
@@ -56,10 +55,7 @@ export default function Navigation() {
                     gap: '8px',
                 }}>
                     <Link href="/" className="nav-logo">
-                        {/* Mini Pixel Logo - just "Yit" */}
-                        <PixelLetter letter="Y" color="var(--text-color)" size="3px" gap="1px" radius="0.5px" />
-                        <PixelLetter letter="i" color="var(--text-color)" size="3px" gap="1px" radius="0.5px" />
-                        <PixelLetter letter="t" color="var(--primary-color)" size="3px" gap="1px" radius="0.5px" />
+                        Yitbarek
                     </Link>
 
                     {/* Desktop nav items */}
@@ -71,7 +67,7 @@ export default function Navigation() {
                         ))}
                     </div>
 
-                    <button onClick={toggleTheme} className="theme-toggle">
+                    <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle color theme">
                         ◐
                     </button>
 

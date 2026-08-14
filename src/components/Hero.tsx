@@ -1,461 +1,126 @@
 "use client";
 
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
 import { useRef } from 'react';
-import GradientBlobs from './GradientBlobs';
-import PixelLetter from './PixelLetter';
+
+const proofPoints = [
+    { value: 'UW CS', label: 'B.S. 2027' },
+    { value: 'Google', label: 'SWE intern' },
+    { value: '50+', label: 'students mentored' },
+];
+
+const selectedWork = [
+    {
+        title: 'AI career tool',
+        detail: 'React, D3, Gemini, BigQuery, and Cloud Run for a 200+ major exploration tool.',
+    },
+    {
+        title: 'LoopIn',
+        detail: 'Founder-led university app for study sessions, events, and smarter scheduling.',
+    },
+    {
+        title: 'Open source AI capstone',
+        detail: 'Submitted a stdlib package with tests, docs, declarations, and namespace exports.',
+    },
+];
+
+const stack = ['React', 'TypeScript', 'D3', 'Firebase', 'Google Cloud'];
 
 export default function Hero() {
     const sectionRef = useRef<HTMLElement>(null);
-    // Story-scroll exit: the hero gently recedes as the first chapter takes over.
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ['start start', 'end start'],
     });
     const exitOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
-    const exitScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
-    const exitY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+    const exitScale = useTransform(scrollYProgress, [0, 1], [1, 0.97]);
+    const exitY = useTransform(scrollYProgress, [0, 1], [0, -36]);
 
     return (
-        <section ref={sectionRef} style={{
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '100px 24px 60px',
-            textAlign: 'center',
-            position: 'relative',
-        }}>
-            <GradientBlobs variant="hero" />
-
-            {/* Real heading for screen readers and search engines */}
-            <h1 className="sr-only">Yitbarek Ejigu — Software Engineer</h1>
-
+        <section ref={sectionRef} className="hero-section">
             <motion.div
-                style={{
-                    opacity: exitOpacity,
-                    scale: exitScale,
-                    y: exitY,
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    flex: 1,
-                }}
+                className="hero-shell"
+                style={{ opacity: exitOpacity, scale: exitScale, y: exitY }}
             >
-
-            {/* Pixel Art Name - blocks assemble letter by letter on load */}
-            <div
-                style={{
-                    marginTop: '40px',
-                    marginBottom: '32px',
-                    overflow: 'hidden',
-                    width: '100%',
-                    maxWidth: '1000px',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '0',
-                }}
-            >
-                <div aria-hidden="true" style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(4px, 1.5vw, 24px)', flexWrap: 'nowrap', justifyContent: 'center' }}>
-                    {(['Y', 'i', 't', 'b', 'a', 'r', 'e', 'k'] as const).map((letter, idx) => (
-                        <PixelLetter
-                            key={idx}
-                            letter={letter}
-                            color={idx < 4 ? 'var(--text-color)' : 'var(--primary-color)'}
-                            animateIn
-                            delay={idx * 0.08}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            {/* Tagline */}
-            <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="mono"
-                style={{
-                    fontSize: 'clamp(13px, 2.5vw, 16px)',
-                    color: 'var(--text-muted)',
-                    maxWidth: '640px',
-                    lineHeight: 1.7,
-                    marginBottom: '28px',
-                }}
-            >
-                <span style={{ color: 'var(--primary-color)' }}>software engineer</span> · CS @ University of Washington &apos;27
-            </motion.p>
-
-            {/* Hero Image with Floating Glass Elements */}
-            <div style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: '700px',
-                marginTop: '24px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
-                {/* Abstract Gradient Blobs */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    style={{
-                        position: 'absolute',
-                        top: '10%',
-                        left: '5%',
-                        width: '180px',
-                        height: '180px',
-                        background: 'linear-gradient(135deg, rgba(147, 112, 219, 0.6) 0%, rgba(79, 70, 229, 0.4) 100%)',
-                        borderRadius: '50%',
-                        filter: 'blur(40px)',
-                        zIndex: 0,
-                    }}
-                />
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.4 }}
-                    style={{
-                        position: 'absolute',
-                        bottom: '20%',
-                        right: '0%',
-                        width: '150px',
-                        height: '150px',
-                        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.5) 0%, rgba(147, 197, 253, 0.3) 100%)',
-                        borderRadius: '50%',
-                        filter: 'blur(35px)',
-                        zIndex: 0,
-                    }}
-                />
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    style={{
-                        position: 'absolute',
-                        top: '60%',
-                        left: '-5%',
-                        width: '120px',
-                        height: '120px',
-                        background: 'linear-gradient(135deg, rgba(251, 146, 60, 0.4) 0%, rgba(251, 191, 36, 0.3) 100%)',
-                        borderRadius: '50%',
-                        filter: 'blur(30px)',
-                        zIndex: 0,
-                    }}
-                />
-
-                {/* Floating Code Editor - Left Side */}
-                <motion.div
-                    className="floating-ui-element"
-                    initial={{ opacity: 0, x: -80, y: 40 }}
-                    animate={{
-                        opacity: 1,
-                        x: 0,
-                        rotate: -2,
-                        y: [0, -6, 0],
-                    }}
-                    transition={{
-                        opacity: { duration: 0.8, delay: 0.5 },
-                        x: { duration: 0.8, delay: 0.5 },
-                        rotate: { duration: 0.8, delay: 0.5 },
-                        y: {
-                            duration: 8,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 1.3
-                        }
-                    }}
-                    whileHover={{
-                        scale: 1.05,
-                        rotate: 0,
-                        transition: { duration: 0.3 }
-                    }}
-                    style={{
-                        position: 'absolute',
-                        left: '-15%',
-                        top: '10%',
-                        background: 'var(--card-bg)',
-                        backdropFilter: 'blur(24px) saturate(180%)',
-                        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                        borderRadius: '20px',
-                        padding: '16px 20px',
-                        boxShadow: 'var(--glass-shadow), var(--glass-inner-border)',
-                        border: '1px solid var(--glass-border)',
-                        zIndex: 10,
-                        minWidth: '280px',
-                        cursor: 'pointer',
-                    }}
+                    className="hero-copy"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    {/* Window Header */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                        <span style={{ fontSize: '11px', color: '#ff6b6b', fontFamily: 'var(--font-mono), monospace' }}>&lt;portfolio.tsx&gt;</span>
-                        <div style={{ display: 'flex', gap: '6px' }}>
-                            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f57' }} />
-                            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#febc2e' }} />
-                            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28c840' }} />
-                        </div>
+                    <p className="hero-eyebrow">Software engineer / UW CS / Seattle</p>
+                    <h1 className="hero-title">Yitbarek Ejigu</h1>
+                    <p className="hero-lede">
+                        I build practical, human-centered software: AI tools, campus products,
+                        data-rich interfaces, and learning systems that make complicated decisions
+                        easier to understand.
+                    </p>
+
+                    <div className="hero-actions">
+                        <Link href="#projects" className="btn btn-primary">
+                            View work
+                        </Link>
+                        <Link href="/resume" className="btn btn-outline">
+                            Resume
+                        </Link>
                     </div>
-                    {/* Code Content */}
-                    <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: '11px', lineHeight: 1.7 }}>
-                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>React</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>{"'react'"}</span></div>
-                        <div><span style={{ color: '#e879f9' }}>import</span> <span style={{ color: '#60a5fa' }}>{'{ motion }'}</span> <span style={{ color: '#e879f9' }}>from</span> <span style={{ color: '#22c55e' }}>{"'framer'"}</span></div>
-                        <div style={{ height: '8px' }} />
-                        <div><span style={{ color: '#e879f9' }}>const</span> <span style={{ color: '#fb923c' }}>App</span> <span style={{ color: '#94a3b8' }}>=</span> <span style={{ color: '#94a3b8' }}>{'() =>'}</span> <span style={{ color: '#94a3b8' }}>{'{'}</span></div>
-                        <div style={{ paddingLeft: '16px' }}><span style={{ color: '#e879f9' }}>return</span> <span style={{ color: '#94a3b8' }}>(</span></div>
-                        <div style={{ paddingLeft: '24px' }}><span style={{ color: '#a78bfa' }}>&lt;Hero</span> <span style={{ color: '#60a5fa' }}>animate</span><span style={{ color: '#94a3b8' }}>=</span><span style={{ color: '#22c55e' }}>true</span> <span style={{ color: '#a78bfa' }}>/&gt;</span> <span style={{ color: '#22c55e' }}>●</span></div>
-                        <div style={{ paddingLeft: '16px' }}><span style={{ color: '#94a3b8' }}>)</span></div>
-                        <div><span style={{ color: '#94a3b8' }}>{'}'}</span> <span style={{ color: '#22c55e' }}>●</span></div>
-                    </div>
-                    {/* Sidebar icons */}
-                    <div style={{
-                        position: 'absolute',
-                        left: '-44px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '8px',
-                        background: 'var(--card-bg)',
-                        backdropFilter: 'blur(16px)',
-                        WebkitBackdropFilter: 'blur(16px)',
-                        padding: '10px',
-                        borderRadius: '14px',
-                        boxShadow: 'var(--glass-shadow), var(--glass-inner-border)',
-                        border: '1px solid var(--glass-border)',
-                    }}>
-                        <div style={{ width: '26px', height: '26px', borderRadius: '6px', background: 'var(--primary-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '11px' }}>◫</div>
-                        <div style={{ width: '26px', height: '26px', borderRadius: '6px', background: 'var(--glass-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', color: 'var(--text-muted)' }}>✎</div>
-                        <div style={{ width: '26px', height: '26px', borderRadius: '6px', background: 'var(--glass-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', color: 'var(--text-muted)' }}>◎</div>
+
+                    <div className="hero-proof" aria-label="Portfolio highlights">
+                        {proofPoints.map((point) => (
+                            <div className="hero-proof-item" key={point.label}>
+                                <span>{point.value}</span>
+                                <small>{point.label}</small>
+                            </div>
+                        ))}
                     </div>
                 </motion.div>
 
-                {/* Floating Toolbar - Top Right */}
-                <motion.div
-                    className="floating-ui-element"
-                    initial={{ opacity: 0, x: 80, y: -40 }}
-                    animate={{
-                        opacity: 1,
-                        x: 0,
-                        rotate: 2,
-                        y: [0, -5, 0],
-                    }}
-                    transition={{
-                        opacity: { duration: 0.8, delay: 0.6 },
-                        x: { duration: 0.8, delay: 0.6 },
-                        rotate: { duration: 0.8, delay: 0.6 },
-                        y: {
-                            duration: 7,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 1.4
-                        }
-                    }}
-                    whileHover={{
-                        scale: 1.1,
-                        rotate: 0,
-                        transition: { duration: 0.3 }
-                    }}
-                    style={{
-                        position: 'absolute',
-                        right: '-5%',
-                        top: '5%',
-                        background: 'var(--card-bg)',
-                        backdropFilter: 'blur(24px) saturate(180%)',
-                        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                        borderRadius: '16px',
-                        padding: '10px 14px',
-                        boxShadow: 'var(--glass-shadow), var(--glass-inner-border)',
-                        border: '1px solid var(--glass-border)',
-                        zIndex: 10,
-                        display: 'flex',
-                        gap: '8px',
-                        alignItems: 'center',
-                        cursor: 'pointer',
-                    }}
+                <motion.aside
+                    className="hero-workbench"
+                    initial={{ opacity: 0, y: 28 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                    aria-label="Selected work snapshot"
                 >
-                    <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--primary-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '12px' }}>▶</div>
-                    <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>⟳</div>
-                    <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>⊕</div>
-                    <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>⋯</div>
-                    <div style={{ width: '28px', height: '28px', borderRadius: '8px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', color: 'var(--text-muted)' }}>+</div>
-                </motion.div>
-
-                {/* Floating Terminal - Bottom Right */}
-                <motion.div
-                    className="floating-ui-element"
-                    initial={{ opacity: 0, x: 80, y: 40 }}
-                    animate={{
-                        opacity: 1,
-                        x: 0,
-                        rotate: 2,
-                        y: [0, -6, 0],
-                    }}
-                    transition={{
-                        opacity: { duration: 0.8, delay: 0.7 },
-                        x: { duration: 0.8, delay: 0.7 },
-                        rotate: { duration: 0.8, delay: 0.7 },
-                        y: {
-                            duration: 9,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 1.6
-                        }
-                    }}
-                    whileHover={{
-                        scale: 1.05,
-                        rotate: 0,
-                        transition: { duration: 0.3 }
-                    }}
-                    style={{
-                        position: 'absolute',
-                        right: '-8%',
-                        bottom: '20%',
-                        background: 'var(--card-bg)',
-                        backdropFilter: 'blur(24px) saturate(180%)',
-                        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                        borderRadius: '16px',
-                        padding: '14px 18px',
-                        boxShadow: 'var(--glass-shadow), var(--glass-inner-border)',
-                        border: '1px solid var(--glass-border)',
-                        zIndex: 10,
-                        minWidth: '230px',
-                        cursor: 'pointer',
-                        textAlign: 'left',
-                    }}
-                >
-                    {/* Terminal header */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px' }}>
-                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f57' }} />
-                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#febc2e' }} />
-                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28c840' }} />
-                        <span style={{ marginLeft: '8px', fontSize: '10px', color: 'var(--text-muted)', fontFamily: 'var(--font-mono), monospace' }}>yit@uw: ~</span>
+                    <div className="workbench-topline">
+                        <span>Current focus</span>
+                        <strong>building + shipping</strong>
                     </div>
-                    {/* Terminal lines type in one after another */}
-                    <div style={{ fontFamily: 'var(--font-mono), monospace', fontSize: '11px', lineHeight: 1.9 }}>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.2, delay: 1.6 }}
-                        >
-                            <span style={{ color: '#22c55e' }}>$</span> <span style={{ color: 'var(--text-color)' }}>whoami</span>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.2, delay: 2.3 }}
-                            style={{ color: 'var(--text-muted)' }}
-                        >
-                            cs student · builder
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.2, delay: 3.0 }}
-                        >
-                            <span style={{ color: '#22c55e' }}>$</span> <span style={{ color: 'var(--text-color)' }}>npm run loopin</span>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.2, delay: 3.7 }}
-                        >
-                            <span style={{ color: 'var(--primary-color)' }}>▸ shipping...</span>
-                            <span className="terminal-cursor" style={{ color: 'var(--text-color)' }}>▊</span>
-                        </motion.div>
+
+                    <div className="workbench-focus">
+                        <span className="workbench-kicker">Recent internship</span>
+                        <h2>AI career-exposure tool</h2>
+                        <p>
+                            Frontend for a two-level treemap over 200+ U.S. college majors, paired
+                            with a grounded Gemini advisor and deployed on Google Cloud Run.
+                        </p>
                     </div>
-                </motion.div>
 
-                {/* Main Hero Image with Floating Animation */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{
-                        opacity: 1,
-                        scale: 1,
-                        y: [0, -6, 0],
-                    }}
-                    transition={{
-                        opacity: { duration: 0.8, delay: 0.2 },
-                        scale: { duration: 0.8, delay: 0.2 },
-                        y: {
-                            duration: 7,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 1.5
-                        }
-                    }}
-                    style={{
-                        width: '100%',
-                        maxWidth: '540px',
-                        borderRadius: '24px',
-                        overflow: 'visible',
-                        position: 'relative',
-                        zIndex: 5,
-                    }}
-                >
-                    {/* Glow effect behind image */}
-                    <div style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '80%',
-                        height: '80%',
-                        background: 'radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%)',
-                        filter: 'blur(40px)',
-                        zIndex: -1,
-                    }} />
-                    <motion.img
-                        src="/profile.svg"
-                        alt="Yitbarek"
-                        initial={{ filter: 'drop-shadow(0 0 0 transparent)' }}
-                        animate={{
-                            filter: [
-                                'drop-shadow(0 10px 30px rgba(102, 126, 234, 0.3))',
-                                'drop-shadow(0 20px 40px rgba(102, 126, 234, 0.4))',
-                                'drop-shadow(0 10px 30px rgba(102, 126, 234, 0.3))',
-                            ]
-                        }}
-                        transition={{
-                            duration: 4,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                        style={{
-                            width: '100%',
-                            height: 'auto',
-                            display: 'block',
-                        }}
-                    />
-                </motion.div>
-            </div>
+                    <div className="workbench-list">
+                        {selectedWork.map((item, index) => (
+                            <motion.div
+                                className="workbench-row"
+                                key={item.title}
+                                initial={{ opacity: 0, x: 16 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.45, delay: 0.35 + index * 0.08 }}
+                            >
+                                <span>{String(index + 1).padStart(2, '0')}</span>
+                                <div>
+                                    <strong>{item.title}</strong>
+                                    <p>{item.detail}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
 
-            {/* Scroll indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.4 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                style={{
-                    marginTop: 'auto',
-                    paddingTop: '60px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '8px',
-                }}
-                className="mono"
-            >
-                <span style={{ fontSize: '12px', letterSpacing: '0.14em', textTransform: 'uppercase' }}>scroll to read</span>
-                <motion.span
-                    aria-hidden="true"
-                    animate={{ y: [0, 6, 0] }}
-                    transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                    ↓
-                </motion.span>
-            </motion.div>
+                    <div className="workbench-stack" aria-label="Core stack">
+                        {stack.map((item) => (
+                            <span key={item}>{item}</span>
+                        ))}
+                    </div>
+                </motion.aside>
             </motion.div>
         </section>
     );

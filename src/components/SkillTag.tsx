@@ -13,42 +13,21 @@ export default function SkillTag({ item, icon, index }: SkillTagProps) {
     return (
         <motion.span
             className="tag"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-                opacity: { duration: 0.4, delay: index * 0.05 },
-            }}
-            whileHover={{
-                scale: 1.05,
-                y: -2,
-                backgroundColor: 'var(--primary-color)',
-                color: 'white',
-            }}
-            style={{
-                background: 'var(--glass-bg)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid var(--glass-border)',
-                padding: '8px 16px',
-                borderRadius: '20px',
-                fontSize: '13px',
-                cursor: 'default',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: 'var(--text-color)',
-            }}
+            transition={{ duration: 0.35, delay: index * 0.035 }}
         >
             {icon && (
                 <Image
                     src={icon}
-                    alt={item}
-                    width={18}
-                    height={18}
+                    alt=""
+                    aria-hidden="true"
+                    width={16}
+                    height={16}
                     unoptimized
                     style={{
                         objectFit: 'contain',
-                        // Invert Next.js icon for dark mode
                         filter: item === 'Next.js' ? 'var(--icon-invert, none)' : 'none',
                     }}
                 />
