@@ -6,6 +6,8 @@ interface ProjectCardProps {
     title: string;
     description: string;
     tags: string[];
+    role: string;
+    impact: string;
     link?: string;
     date: string;
     status?: string;
@@ -22,20 +24,66 @@ export default function ProjectCard({
     title,
     description,
     tags,
+    role,
+    impact,
     link,
     date,
     status,
     index = 0,
 }: ProjectCardProps) {
     const displayStatus = status ? statusLabels[status] ?? status : link ? 'Deployed' : 'In progress';
-    const Wrapper = link ? motion.a : motion.article;
+    const content = (
+        <>
+            <div className="project-card-meta">
+                <span>{role}</span>
+                <span>{date}</span>
+            </div>
+
+            <h3>{title}</h3>
+            <p>{description}</p>
+
+            <div className="project-card-impact">
+                <span>Impact</span>
+                <strong>{impact}</strong>
+            </div>
+
+            <div className="project-card-tags">
+                {tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                ))}
+            </div>
+
+            <div className="project-card-footer">
+                <span>{displayStatus}</span>
+                <span aria-hidden="true">-&gt;</span>
+            </div>
+        </>
+    );
+
+    if (link) {
+        return (
+            <motion.a
+                className="project-card"
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{
+                    y: -6,
+                    transition: { duration: 0.25 },
+                }}
+            >
+                {content}
+            </motion.a>
+        );
+    }
 
     return (
-        <Wrapper
+        <motion.article
             className="project-card"
-            href={link}
-            target={link ? '_blank' : undefined}
-            rel={link ? 'noopener noreferrer' : undefined}
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -45,24 +93,7 @@ export default function ProjectCard({
                 transition: { duration: 0.25 },
             }}
         >
-            <div className="project-card-top">
-                <span className="project-card-status">{displayStatus}</span>
-                <span className="project-card-date">{date}</span>
-            </div>
-
-            <h3>{title}</h3>
-            <p>{description}</p>
-
-            <div className="project-card-tags">
-                {tags.map((tag) => (
-                    <span key={tag}>{tag}</span>
-                ))}
-            </div>
-
-            <div className="project-card-footer">
-                <span>{link ? 'Open project' : 'Case study coming soon'}</span>
-                <span aria-hidden="true">-&gt;</span>
-            </div>
-        </Wrapper>
+            {content}
+        </motion.article>
     );
 }
