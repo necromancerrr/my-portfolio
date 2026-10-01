@@ -285,51 +285,6 @@
   margin-top: 4px;
 }
 
-.group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.groupLabel {
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* "Inside the app" sticker tiles */
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.feature {
-  padding: 6px 12px;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.2;
-  border: 2px solid var(--line);
-  border-radius: var(--r-chip);
-  box-shadow: 3px 3px 0 var(--shadow);
-  transform: rotate(-1.5deg);
-  transition:
-    transform 0.14s var(--ease),
-    box-shadow 0.14s var(--ease);
-}
-
-.feature:nth-child(even) {
-  transform: rotate(1.5deg);
-}
-
-.feature:hover {
-  transform: translate(-1px, -2px) rotate(0deg);
-  box-shadow: 4px 5px 0 var(--shadow);
-}
-
 .links {
   display: flex;
   flex-wrap: wrap;
