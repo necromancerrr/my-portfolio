@@ -6,6 +6,8 @@ export type Accent = 'sky' | 'sun' | 'teal';
 export interface ProjectLink {
   label: string;
   href: string;
+  /** Optional icon from /public/icons */
+  icon?: string;
 }
 
 export interface FeaturedProject {
@@ -22,6 +24,8 @@ export interface FeaturedProject {
   /** Anchor so other sections can link to this card */
   id?: string;
   links: ProjectLink[];
+  /** What's inside the product, shown as sticker tiles (e.g. the parts of a super app) */
+  features?: string[];
   /** Media, in order of preference: a demo video, a screenshot, or a code sample */
   video?: { webm: string; mp4: string; poster: string; width: number; height: number; label: string };
   image?: { src: string; alt: string; width: number; height: number };
@@ -72,16 +76,20 @@ export interface SkillGroup {
 export const featuredProjects: FeaturedProject[] = [
   {
     name: 'LoopIn',
-    tagline: 'A university app for study sessions and campus events.',
+    tagline: 'The first super app for students: events, study rooms, campus news and a marketplace in one place.',
     description:
-      'Cross-platform app where students create and join study sessions and discover what’s happening on campus. The backend runs on Supabase with auth, data modeling and CRUD workflows, plus early AI-assisted features for scheduling and message drafting.',
+      'A verified, campus-only app for everything between classes. Discover and RSVP to events, start a Study Room with classmates and Frosty, an AI study buddy (then pick it up on your laptop with a quick scan), follow campus news and predictions on Pulse, and buy and sell with other students. Live on the App Store and piloting at the University of Washington.',
     role: 'Founder & Developer',
     date: 'Jun 2025 – Present',
     stack: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
     accent: 'sky',
     host: 'loopins.app',
     badge: 'LIVE',
-    links: [{ label: 'Visit loopins.app', href: 'https://www.loopins.app' }],
+    features: ['Events', 'Study Rooms', 'Frosty', 'Pulse', 'Marketplace'],
+    links: [
+      { label: 'Get it on the App Store', href: 'https://apps.apple.com/app/loopin-campus/id6805217557', icon: 'appstore' },
+      { label: 'loopins.app', href: 'https://www.loopins.app' },
+    ],
     image: { src: '/work/loopin.png', alt: 'LoopIn landing page', width: 1440, height: 900 },
   },
   {

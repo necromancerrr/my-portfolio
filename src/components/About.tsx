@@ -15,9 +15,9 @@ export default function About() {
                 </p>
                 <p>
                     This summer I was a Software Engineering Intern at Google through Break Through Tech,
-                    building the frontend for an AI career-exposure tool. Outside class I’m building LoopIn, a
-                    university app for study sessions and campus events, and openroles.ai, a live board for
-                    internship and new-grad roles.
+                    building the frontend for Beyond the Degree, an AI career-exposure tool. Outside class I’m
+                    building LoopIn, a super app for students that’s now live on the App Store, and openroles.ai,
+                    a live board for internship and new-grad roles.
                 </p>
                 <p>
                     I also ship features for the UW Blockchain Society, help run events for the Google
