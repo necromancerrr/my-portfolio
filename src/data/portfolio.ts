@@ -78,14 +78,14 @@ export const featuredProjects: FeaturedProject[] = [
     name: 'LoopIn',
     tagline: 'The first super app for students: events, study rooms, campus news and a marketplace in one place.',
     description:
-      'A verified, campus-only app for everything between classes. Discover and RSVP to events, start a Study Room with classmates and an AI study buddy (then pick it up on your laptop with a quick scan), follow campus news and predictions on Pulse, and buy and sell with other students. Live on the App Store and piloting at the University of Washington.',
+      'A verified, campus-only app for everything between classes. Discover and RSVP to events, start a Study Room with classmates and Frosty, an AI study buddy (then pick it up on your laptop with a quick scan), follow campus news and predictions on Pulse, and buy and sell with other students. Live on the App Store and piloting at the University of Washington.',
     role: 'Founder & Developer',
     date: 'Jun 2025 – Present',
     stack: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
     accent: 'sky',
     host: 'loopins.app',
     badge: 'LIVE',
-    features: ['Events', 'Study Rooms', 'AI Study Buddy', 'Pulse', 'Marketplace'],
+    features: ['Events', 'Study Rooms', 'Frosty', 'Pulse', 'Marketplace'],
     links: [
       { label: 'Get it on the App Store', href: 'https://apps.apple.com/app/loopin-campus/id6805217557', icon: 'appstore' },
       { label: 'loopins.app', href: 'https://www.loopins.app' },
