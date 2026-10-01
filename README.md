@@ -59,6 +59,6 @@ src/
   lib/site.ts             # site identity + links
 public/
   RESUME.pdf              # latest resume
-  work/                   # project screenshots
+  work/                   # project screenshots + Google demo video
   icons/                  # monochrome brand icons
 ```

@@ -18,9 +18,12 @@ export interface FeaturedProject {
   accent: Accent;
   /** Short host shown in the card's browser bar */
   host: string;
-  live?: boolean;
+  badge?: 'LIVE' | 'DEMO';
+  /** Anchor so other sections can link to this card */
+  id?: string;
   links: ProjectLink[];
-  /** Screenshot of the live product; projects without one show `code` instead */
+  /** Media, in order of preference: a demo video, a screenshot, or a code sample */
+  video?: { webm: string; mp4: string; poster: string; width: number; height: number; label: string };
   image?: { src: string; alt: string; width: number; height: number };
   code?: string[];
 }
@@ -41,6 +44,8 @@ export interface Role {
   points: string[];
   stack?: string[];
   highlight?: boolean;
+  /** In-page link to a demo of this work */
+  demoHref?: string;
 }
 
 export interface Leadership {
@@ -66,6 +71,28 @@ export interface SkillGroup {
 
 export const featuredProjects: FeaturedProject[] = [
   {
+    id: 'google-demo',
+    name: 'Beyond the Degree',
+    tagline: 'See how AI is reshaping 200+ college majors, then ask an advisor what it means for you.',
+    description:
+      'Built at Google during the Break Through Tech Sprinternship. I built the frontend: a two-level D3 treemap of 204 majors, sized by graduate count and colored by AI-exposure score, with search and click-through to a grounded Gemini advisor. Exposure scores are precomputed into a static JSON bundle so the map renders without a backend round-trip, and our team took the advisor’s time-to-first-token from 8.2s to 1.0s.',
+    role: 'SWE Intern · Google × Break Through Tech',
+    date: 'Jul – Aug 2026',
+    stack: ['React', 'TypeScript', 'D3', 'Vite', 'Gemini', 'Cloud Run'],
+    accent: 'sky',
+    host: 'beyond-the-degree · demo',
+    badge: 'DEMO',
+    links: [],
+    video: {
+      webm: '/work/google-demo.webm',
+      mp4: '/work/google-demo.mp4',
+      poster: '/work/google-demo-poster.jpg',
+      width: 1600,
+      height: 840,
+      label: 'Play the Beyond the Degree demo (1 minute, no sound)',
+    },
+  },
+  {
     name: 'LoopIn',
     tagline: 'A university app for study sessions and campus events.',
     description:
@@ -73,9 +100,9 @@ export const featuredProjects: FeaturedProject[] = [
     role: 'Founder & Developer',
     date: 'Jun 2025 – Present',
     stack: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
-    accent: 'sky',
+    accent: 'sun',
     host: 'loopins.app',
-    live: true,
+    badge: 'LIVE',
     links: [{ label: 'Visit loopins.app', href: 'https://www.loopins.app' }],
     image: { src: '/work/loopin.png', alt: 'LoopIn landing page', width: 1440, height: 900 },
   },
@@ -87,9 +114,9 @@ export const featuredProjects: FeaturedProject[] = [
     role: 'Founder & Developer',
     date: 'Jul 2026',
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Vercel'],
-    accent: 'sun',
+    accent: 'teal',
     host: 'openroles-ai.vercel.app',
-    live: true,
+    badge: 'LIVE',
     links: [{ label: 'Visit openroles.ai', href: 'https://openroles-ai.vercel.app' }],
     image: { src: '/work/openroles.png', alt: 'openroles.ai job board', width: 1440, height: 900 },
   },
@@ -101,7 +128,7 @@ export const featuredProjects: FeaturedProject[] = [
     role: 'Open-source contributor · CodePath AI 301',
     date: 'Jun – Aug 2026',
     stack: ['JavaScript', 'TypeScript', 'Node.js', 'Open source'],
-    accent: 'teal',
+    accent: 'sky',
     host: 'github.com/stdlib-js',
     links: [
       {
@@ -150,6 +177,7 @@ export const experience: Role[] = [
     role: 'Software Engineering Intern',
     date: 'Jul – Aug 2026',
     highlight: true,
+    demoHref: '#google-demo',
     points: [
       'Built the frontend for an AI career-exposure tool: a two-level D3 treemap of 200+ U.S. college majors, sized by graduate count and colored by AI-exposure score, with search and click-through to a grounded Gemini advisor.',
       'Cut load time by precomputing exposure scores into a static JSON bundle, so the treemap renders without a backend round-trip. Part of the 4-person team that took the advisor’s time-to-first-token from 8.2s to 1.0s.',

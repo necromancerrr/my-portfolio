@@ -9,6 +9,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   overflow: hidden;
+  scroll-margin-top: 104px;
 }
 
 .flip .media {
@@ -124,6 +125,109 @@
   min-width: 0;
 }
 
+.lead,
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.detail {
+  flex: 1;
+}
+
+/* Wide card: full-width demo video, copy in two columns underneath */
+.wide {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.wide .media {
+  border-right: 0;
+  border-bottom: var(--bw) solid var(--line);
+}
+
+.wide .body {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 20px 48px;
+  padding: 36px 36px 34px;
+}
+
+.wide .name {
+  font-size: clamp(30px, 3.6vw, 42px);
+}
+
+/* Demo video: poster with a play button until clicked */
+.video {
+  position: relative;
+  width: 100%;
+  background: #0b0b0c;
+}
+
+.video video,
+.poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  padding-left: 4px;
+  color: var(--navy);
+  background: var(--sun);
+  border: var(--bw) solid var(--navy);
+  border-radius: 50%;
+  box-shadow: 5px 5px 0 var(--navy);
+  transition:
+    transform 0.12s var(--ease),
+    box-shadow 0.12s var(--ease);
+}
+
+.poster:hover .play {
+  transform: translate(-2px, -2px) scale(1.06);
+  box-shadow: 7px 7px 0 var(--navy);
+}
+
+.poster:active .play {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 var(--navy);
+}
+
+.playLabel {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  background: #fff;
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--navy);
+}
+
 .meta {
   font-size: 12.5px;
   color: var(--muted);
@@ -235,6 +339,29 @@
     border-left: 0;
     border-right: 0;
     border-bottom: var(--bw) solid var(--line);
+  }
+
+  .wide .body {
+    display: flex;
+    gap: 14px;
+    padding: 24px 20px;
+  }
+
+  .play {
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+  }
+
+  .playLabel {
+    left: 10px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .playLabel {
+    display: none;
   }
 
   .shot {

@@ -11,7 +11,7 @@ export default function About() {
         <div className={styles.bento}>
             <Reveal className={`nb-card ${styles.tile} ${styles.bio}`}>
                 <p className={styles.bioLead}>
-                    I’m a CS student at the University of Washington who <Marker>learns by shipping</Marker>.
+                    I’m a CS student at the University of Washington who <Marker>learns by building</Marker>.
                 </p>
                 <p>
                     This summer I was a Software Engineering Intern at Google through Break Through Tech,

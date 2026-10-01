@@ -32,6 +32,37 @@
   letter-spacing: -0.035em;
 }
 
+.wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 1.6s ease-in-out 0.6s 1;
+}
+
+.title:hover .wave {
+  animation: wave 1.2s ease-in-out 1;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10%,
+  30% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
 .boxed {
   display: inline-block;
   padding: 0 0.18em 0.04em;

@@ -27,7 +27,7 @@ export default function Home() {
               label="Work"
               id="work-title"
               title="Selected work"
-              sub="Products I’ve founded and shipped, plus an open-source contribution to stdlib."
+              sub="From my Google internship to products I’ve founded, plus an open-source contribution to stdlib."
             />
             <div className={workStyles.list}>
               {featuredProjects.map((project, i) => (

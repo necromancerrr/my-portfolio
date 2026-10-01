@@ -4,7 +4,7 @@ import Reveal from './Reveal';
 import Star from './Star';
 import styles from './Intro.module.css';
 
-// Minimal opener: one statement, then straight into the work.
+// Minimal opener: a friendly hello, then straight into the work.
 export default function Intro() {
     return (
         <section className={styles.intro} aria-labelledby="intro-title">
@@ -15,15 +15,14 @@ export default function Intro() {
 
                 <Reveal onMount delay={0.15}>
                     <h1 id="intro-title" className={styles.title}>
-                        I build clean, <span className={styles.boxed}>useful</span> software, from campus apps
-                        to AI tools.
+                        Hey, I’m Yitbarek <span className={styles.wave} aria-hidden="true">👋</span>
+                        <br />
+                        I like <span className={styles.boxed}>building</span> things people actually use.
                     </h1>
                 </Reveal>
 
                 <Reveal onMount delay={0.28}>
                     <p className={`mono ${styles.meta}`}>
-                        <span>{site.name}</span>
-                        <span className={styles.sep} aria-hidden="true">/</span>
                         <span>CS @ University of Washington ’27</span>
                         <span className={styles.sep} aria-hidden="true">/</span>
                         <span>{site.location}</span>

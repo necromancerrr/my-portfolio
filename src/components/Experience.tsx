@@ -29,6 +29,11 @@ export default function Experience() {
                                             ))}
                                         </ul>
                                     )}
+                                    {job.demoHref && (
+                                        <a href={job.demoHref} className={`nb-btn nb-btn--sm nb-btn--sun ${styles.demo}`}>
+                                            Watch the demo <span aria-hidden="true">↑</span>
+                                        </a>
+                                    )}
                                 </div>
                             </article>
                         </Reveal>
