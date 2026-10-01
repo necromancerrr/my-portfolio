@@ -1,0 +1,131 @@
+.intro {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+  min-height: 80svh;
+  /* Pull the grid up behind the sticky nav */
+  margin-top: -100px;
+  padding: 172px 0 88px;
+  overflow: hidden;
+  /* Faint graph paper, intro only */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: -1px -1px;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.title {
+  max-width: 17ch;
+  font-size: clamp(36px, 5.4vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 1.6s ease-in-out 0.6s 1;
+}
+
+.title:hover .wave {
+  animation: wave 1.2s ease-in-out 1;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10%,
+  30% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+.boxed {
+  display: inline-block;
+  padding: 0 0.18em 0.04em;
+  color: var(--navy);
+  background: var(--sky);
+  border: var(--bw) solid var(--line);
+  border-radius: var(--r-btn);
+  box-shadow: calc(5px * var(--stamp)) calc(5px * var(--stamp)) 0 var(--shadow);
+  transform: rotate(-2deg);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.meta span {
+  white-space: nowrap;
+}
+
+.sep {
+  color: var(--teal);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.star {
+  position: absolute;
+  right: max(24px, calc((100vw - var(--container)) / 2 + 24px));
+  top: 50%;
+  width: clamp(120px, 15vw, 190px);
+  margin-top: -80px;
+  animation: spin 28s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .star {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .intro {
+    min-height: auto;
+    margin-top: -88px;
+    padding: 148px 0 72px;
+  }
+
+  .inner {
+    gap: 22px;
+  }
+}

@@ -1,0 +1,35 @@
+.footer {
+  margin-top: 120px;
+  color: var(--on-dark);
+  background: var(--navy);
+  border-top: var(--bw) solid var(--line);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+}
+
+.top {
+  color: var(--sky);
+  font-weight: 700;
+}
+
+.top:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 720px) {
+  .footer {
+    margin-top: 80px;
+  }
+}

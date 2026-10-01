@@ -1,0 +1,68 @@
+.block {
+  --sh-card: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: clamp(28px, 5vw, 64px);
+}
+
+.title {
+  font-size: clamp(40px, 6.4vw, 76px);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.sub {
+  max-width: 44ch;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.emailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.email {
+  padding: 15px 22px;
+  font-size: clamp(16px, 2.4vw, 22px);
+}
+
+.copyWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.copied {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  margin-top: -18px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 560px) {
+  .email {
+    font-size: 15px;
+    padding: 13px 16px;
+  }
+
+  .copied {
+    left: auto;
+    right: 0;
+    top: auto;
+    bottom: calc(100% + 10px);
+    margin-top: 0;
+  }
+}
