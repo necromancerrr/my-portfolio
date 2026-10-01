@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { FeaturedProject } from '@/data/portfolio';
 import DemoVideo from './DemoVideo';
+import VideoCard from './VideoCard';
 import styles from './Work.module.css';
 
 const accentClass = { sky: 'fill-sky', sun: 'fill-sun', teal: 'fill-teal' } as const;
@@ -31,11 +32,11 @@ function CodeLine({ line }: { line: string }) {
 }
 
 export default function WorkCard({ project, index }: { project: FeaturedProject; index: number }) {
-    // Video cards span the full width with copy underneath; the rest alternate sides.
-    const layout = project.video ? styles.wide : index % 2 === 1 ? styles.flip : '';
+    // Cards alternate media sides. A video card widens to full width while it plays.
+    const className = `nb-card nb-card--lift ${styles.card} ${index % 2 === 1 ? styles.flip : ''}`;
 
-    return (
-        <article id={project.id} className={`nb-card nb-card--lift ${styles.card} ${layout}`}>
+    const content = (
+        <>
             <div className={styles.media}>
                 <div className={`${accentClass[project.accent]} ${styles.bar}`}>
                     <span className={styles.dots} aria-hidden="true">
@@ -106,6 +107,16 @@ export default function WorkCard({ project, index }: { project: FeaturedProject;
                     )}
                 </div>
             </div>
+        </>
+    );
+
+    return project.video ? (
+        <VideoCard id={project.id} className={className} playingClassName={`nb-card ${styles.card} ${styles.wide}`}>
+            {content}
+        </VideoCard>
+    ) : (
+        <article id={project.id} className={className}>
+            {content}
         </article>
     );
 }

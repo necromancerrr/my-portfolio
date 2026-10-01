@@ -71,6 +71,20 @@ export interface SkillGroup {
 
 export const featuredProjects: FeaturedProject[] = [
   {
+    name: 'LoopIn',
+    tagline: 'A university app for study sessions and campus events.',
+    description:
+      'Cross-platform app where students create and join study sessions and discover what’s happening on campus. The backend runs on Supabase with auth, data modeling and CRUD workflows, plus early AI-assisted features for scheduling and message drafting.',
+    role: 'Founder & Developer',
+    date: 'Jun 2025 – Present',
+    stack: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
+    accent: 'sky',
+    host: 'loopins.app',
+    badge: 'LIVE',
+    links: [{ label: 'Visit loopins.app', href: 'https://www.loopins.app' }],
+    image: { src: '/work/loopin.png', alt: 'LoopIn landing page', width: 1440, height: 900 },
+  },
+  {
     id: 'google-demo',
     name: 'Beyond the Degree',
     tagline: 'See how AI is reshaping 200+ college majors, then ask an advisor what it means for you.',
@@ -79,7 +93,7 @@ export const featuredProjects: FeaturedProject[] = [
     role: 'SWE Intern · Google × Break Through Tech',
     date: 'Jul – Aug 2026',
     stack: ['React', 'TypeScript', 'D3', 'Vite', 'Gemini', 'Cloud Run'],
-    accent: 'sky',
+    accent: 'sun',
     host: 'beyond-the-degree · demo',
     badge: 'DEMO',
     links: [],
@@ -91,20 +105,6 @@ export const featuredProjects: FeaturedProject[] = [
       height: 840,
       label: 'Play the Beyond the Degree demo (1 minute, no sound)',
     },
-  },
-  {
-    name: 'LoopIn',
-    tagline: 'A university app for study sessions and campus events.',
-    description:
-      'Cross-platform app where students create and join study sessions and discover what’s happening on campus. The backend runs on Supabase with auth, data modeling and CRUD workflows, plus early AI-assisted features for scheduling and message drafting.',
-    role: 'Founder & Developer',
-    date: 'Jun 2025 – Present',
-    stack: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
-    accent: 'sun',
-    host: 'loopins.app',
-    badge: 'LIVE',
-    links: [{ label: 'Visit loopins.app', href: 'https://www.loopins.app' }],
-    image: { src: '/work/loopin.png', alt: 'LoopIn landing page', width: 1440, height: 900 },
   },
   {
     name: 'openroles.ai',
