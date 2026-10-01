@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { FeaturedProject } from '@/data/portfolio';
 import DemoVideo from './DemoVideo';
+import Icon from './Icon';
 import VideoCard from './VideoCard';
 import styles from './Work.module.css';
 
@@ -85,11 +86,26 @@ export default function WorkCard({ project, index }: { project: FeaturedProject;
                 </div>
                 <div className={styles.detail}>
                     <p className={styles.desc}>{project.description}</p>
-                    <ul className={styles.stack} aria-label="Tech stack">
-                        {project.stack.map((s) => (
-                            <li key={s} className="nb-chip">{s}</li>
-                        ))}
-                    </ul>
+                    {project.features && (
+                        <div className={styles.group}>
+                            <p className={`mono ${styles.groupLabel}`}>Inside the app</p>
+                            <ul className={styles.features} aria-label="Features">
+                                {project.features.map((f, i) => (
+                                    <li key={f} className={`${styles.feature} ${i % 2 === 0 ? 'fill-sky' : 'fill-sun'}`}>
+                                        {f}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    <div className={styles.group}>
+                        {project.features && <p className={`mono ${styles.groupLabel}`}>Built with</p>}
+                        <ul className={styles.stack} aria-label="Tech stack">
+                            {project.stack.map((s) => (
+                                <li key={s} className="nb-chip">{s}</li>
+                            ))}
+                        </ul>
+                    </div>
                     {project.links.length > 0 && (
                         <div className={styles.links}>
                             {project.links.map((link, i) => (
@@ -100,6 +116,7 @@ export default function WorkCard({ project, index }: { project: FeaturedProject;
                                     rel="noopener noreferrer"
                                     className={`nb-btn nb-btn--sm ${i === 0 ? 'nb-btn--sky' : ''}`}
                                 >
+                                    {link.icon && <Icon name={link.icon} size={16} />}
                                     {link.label} <span aria-hidden="true">↗</span>
                                 </a>
                             ))}
