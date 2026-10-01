@@ -24,8 +24,6 @@ export interface FeaturedProject {
   /** Anchor so other sections can link to this card */
   id?: string;
   links: ProjectLink[];
-  /** What's inside the product, shown as sticker tiles (e.g. the parts of a super app) */
-  features?: string[];
   /** Media, in order of preference: a demo video, a screenshot, or a code sample */
   video?: { webm: string; mp4: string; poster: string; width: number; height: number; label: string };
   image?: { src: string; alt: string; width: number; height: number };
@@ -85,7 +83,6 @@ export const featuredProjects: FeaturedProject[] = [
     accent: 'sky',
     host: 'loopins.app',
     badge: 'LIVE',
-    features: ['Events', 'Study Rooms', 'Frosty', 'Pulse', 'Marketplace'],
     links: [
       { label: 'Get it on the App Store', href: 'https://apps.apple.com/app/loopin-campus/id6805217557', icon: 'appstore' },
       { label: 'loopins.app', href: 'https://www.loopins.app' },
