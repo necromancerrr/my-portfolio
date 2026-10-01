@@ -1,28 +1,26 @@
-// Slow-scrolling ticker strip. Pure CSS animation (see .marquee in globals.css),
-// so it can render on the server and pauses under prefers-reduced-motion.
+import styles from './Marquee.module.css';
 
-interface MarqueeProps {
-    items: string[];
-}
-
-export default function Marquee({ items }: MarqueeProps) {
-    // Track content is duplicated once so the -50% translate loops seamlessly.
-    const strip = (key: string) => (
-        <div className="marquee-group" aria-hidden={key === 'b' ? true : undefined} key={key}>
-            {items.map((item) => (
-                <span className="marquee-item" key={`${key}-${item}`}>
+// Tilted ticker band. Decorative (every item appears elsewhere on the page), so
+// it is hidden from assistive tech. Pure CSS; stops under prefers-reduced-motion.
+export default function Marquee({ items }: { items: string[] }) {
+    const group = (key: string) => (
+        <div className={styles.group} key={key}>
+            {[...items, ...items].map((item, i) => (
+                <span className={styles.item} key={`${key}-${i}`}>
                     {item}
-                    <span className="marquee-star" aria-hidden="true">✦</span>
+                    <span className={styles.sep}>✦</span>
                 </span>
             ))}
         </div>
     );
 
     return (
-        <div className="marquee" role="marquee" aria-label={items.join(', ')}>
-            <div className="marquee-track">
-                {strip('a')}
-                {strip('b')}
+        <div className={styles.wrap} aria-hidden="true">
+            <div className={styles.band}>
+                <div className={styles.track}>
+                    {group('a')}
+                    {group('b')}
+                </div>
             </div>
         </div>
     );

@@ -1,0 +1,258 @@
+.wrap {
+  --gutter: 24px;
+  position: sticky;
+  top: 16px;
+  z-index: 1000;
+  max-width: var(--container);
+  margin: 16px auto 0;
+  padding: 0 var(--gutter);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 10px 10px 18px;
+  --sh-card: 4px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.brandMark {
+  width: 14px;
+  height: 14px;
+  background: var(--sky);
+  border: 2px solid var(--line);
+  border-radius: 3px;
+  transform: rotate(45deg);
+  transition: transform 0.3s var(--ease);
+}
+
+.brand:hover .brandMark {
+  transform: rotate(225deg);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.link {
+  position: relative;
+  padding: 8px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--r-chip);
+}
+
+.linkText {
+  position: relative;
+  z-index: 1;
+}
+
+.link:hover .linkText {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.link[aria-current] {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.link[aria-current] .linkText {
+  text-decoration: none;
+}
+
+.activePill {
+  position: absolute;
+  inset: 0;
+  background: var(--sky);
+  border: 2px solid var(--line);
+  border-radius: var(--r-chip);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Theme switch */
+.toggle {
+  position: relative;
+  width: 58px;
+  height: 32px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 2px 2px 0 var(--shadow);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+[data-theme='dark'] .toggle {
+  background: var(--navy);
+}
+
+.knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--navy);
+  background: var(--sun);
+  border: 2px solid var(--navy);
+  border-radius: 50%;
+  transition:
+    transform 0.28s var(--ease),
+    background-color 0.2s ease;
+}
+
+[data-theme='dark'] .knob {
+  transform: translateX(26px);
+  background: var(--sky);
+}
+
+.sun,
+.moon {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s var(--ease);
+}
+
+.moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+[data-theme='dark'] .sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+[data-theme='dark'] .moon {
+  opacity: 1;
+  transform: none;
+}
+
+/* Mobile */
+.menuBtn {
+  display: none;
+}
+
+.burger,
+.burger::before,
+.burger::after {
+  display: block;
+  width: 16px;
+  height: 2.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.2s var(--ease);
+}
+
+.burger {
+  position: relative;
+}
+
+.burger::before,
+.burger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.burger::before {
+  top: -5.5px;
+}
+
+.burger::after {
+  top: 5.5px;
+}
+
+.burgerOpen {
+  background: transparent;
+}
+
+.burgerOpen::before {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.burgerOpen::after {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.mobileLink {
+  padding: 14px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: var(--r-chip);
+}
+
+.mobileLink:hover {
+  background: var(--sky);
+  color: var(--navy);
+}
+
+.mobileLink[aria-current] {
+  background: var(--sky);
+  color: var(--navy);
+}
+
+@media (max-width: 860px) {
+  .links {
+    display: none;
+  }
+
+  .actions {
+    margin-left: auto;
+  }
+
+  .menuBtn {
+    display: inline-flex;
+  }
+
+  .mobileMenu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: var(--gutter);
+    right: var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 720px) {
+  .wrap {
+    --gutter: 16px;
+    top: 12px;
+    margin-top: 12px;
+  }
+
+  .bar {
+    padding-left: 14px;
+  }
+}

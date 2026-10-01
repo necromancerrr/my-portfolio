@@ -1,59 +1,66 @@
-import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Space_Grotesk, Space_Mono } from 'next/font/google';
 import Providers from '@/components/Providers';
+import { site } from '@/lib/site';
 import './globals.css';
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
+  weight: ['400', '500', '700'],
+  variable: '--font-sans',
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const spaceMono = Space_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '700'],
   variable: '--font-mono',
   display: 'swap',
 });
 
-const siteUrl = 'https://my-portfolio-eta-mocha-48.vercel.app';
-const title = 'Yitbarek Ejigu | Software Engineer';
-const description =
-  'Portfolio of Yitbarek Ejigu — Computer Science student at the University of Washington, full-stack developer, founder of LoopIn, and incoming Software Engineering Sprintern at Google.';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title,
-  description,
+  metadataBase: new URL(site.url),
+  title: site.title,
+  description: site.description,
   keywords: [
     'Yitbarek Ejigu',
     'Software Engineer',
-    'Full Stack Developer',
     'University of Washington',
     'Computer Science',
+    'LoopIn',
+    'openroles.ai',
     'Portfolio',
   ],
-  authors: [{ name: 'Yitbarek Ejigu', url: siteUrl }],
-  creator: 'Yitbarek Ejigu',
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
   openGraph: {
-    title,
-    description,
-    url: siteUrl,
-    siteName: 'Yitbarek Ejigu',
+    title: site.title,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
-    card: 'summary',
-    title,
-    description,
+    card: 'summary_large_image',
+    title: site.title,
+    description: site.description,
   },
   robots: {
     index: true,
     follow: true,
   },
 };
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#011a28' },
+  ],
+};
+
+// Applies the saved (or system) theme before first paint to avoid a flash.
+const themeScript = `(function(){try{var s=localStorage.getItem('theme');var t=s==='dark'||s==='light'?s:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var r=document.documentElement;r.setAttribute('data-theme',t);r.style.colorScheme=t;if(!s){window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){if(localStorage.getItem('theme'))return;var n=e.matches?'dark':'light';r.setAttribute('data-theme',n);r.style.colorScheme=n;});}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -62,24 +69,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const savedTheme = localStorage.getItem('theme');
-                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                  } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className={`${spaceGrotesk.variable} ${spaceMono.variable}`}>
+        <div id="top" />
+        <a href="#main" className="skip-link">Skip to content</a>
         <Providers>{children}</Providers>
       </body>
     </html>
